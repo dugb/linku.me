@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html {
+  font: normal 16px sans-serif;
+  color: #555;
+}
+
+a {
+  text-decoration: none;
+  opacity: 0.75;
+  color: #fff;
+}
+a:hover {
+  opacity: 1;
+}
+
+a.btn {
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  background-color: #3f51b5;
+  opacity: 0.75;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*padding: 100px 80px;*/
+}
+
+.hero {
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+  color: #4db584;
+
+
+}
+
+.hero--background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  z-index: -1;
+  background-color: #80a3db;
+  opacity: .75;
+}
+
+.hero--title {
+  font: bold 8rem "Open Sans", sans-serif;
+  margin-bottom: 20px;
+}
+
+.hero--subtitle {
+  margin-bottom: 30px;
+  color: #2f2f2f;
+}
+
+.hero--caption {
+  font: bold 34px "Open Sans", sans-serif;
+  margin-bottom: 40px;
+  color: #2f2f2f;
+}
+
+
+.hero a.btn {
+  padding: 10px 16px;
+  border-radius: 16px;
+}
+
+.hero--content-area {
+  opacity: 0;
+  margin-top: 100px;
+  animation: 1s slidefade 1s forwards;
+}
+
+@keyframes slidefade {
+  100% {
+    opacity: 1;
+    margin: 0;
+  }
+}

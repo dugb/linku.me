@@ -1,0 +1,23 @@
+<% include ./partials/header-no-nav %>
+<div class="background-image" style="background-image: url(images/landing001.jpg);"></div>
+<section>
+
+
+      <h1 class = "title"><a href="/">linkU.Me</a></h1>
+      <!-- <h2 class = "subtitle">Register</h1> -->
+      <form action="/register" method="post">
+        <div class="">
+          <input class="form-input" type="email" name="email" placeholder="email" required autofocus>
+        </div>
+        <div class="">
+          <input class="form-input" type="text" name="username" placeholder="username" required>
+        </div>
+        <div class="">
+          <input class="form-input" type="password" name="password" placeholder="password" required>
+        </div>  
+        <div class="">
+          <button class="btn btn-large btn-primary btn-block">Sign Up</button>
+        </div>
+      </form>
+</section>
+<% include ./partials/footer %>

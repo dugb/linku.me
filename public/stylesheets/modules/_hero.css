@@ -1,0 +1,24 @@
+.hero {
+  position: relative;
+  max-width: 1180px;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #2f2f2f;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 100px;
+  margin-bottom: 20px;
+
+  &--welcome{
+    margin-left: 30px;
+    color: #494747;
+  }
+
+
+}

@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="/temp/styles/styles.css">
+</head>
+<body class = "mobile-shift">
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<% include ../partials/slide-out-nav %>
+
+
+  <div class="">
+    <img src="/images/profile-images/<%=user.avatar%>" alt="">
+    <h4><%= user.username %></h4>
+    <h4>email: <%= user.email %></h4>
+    <h4>member_id: <%= user.member_id %></h4>
+    <h4 id="user-location">Location: <%= user.profile[0].location %></h4>
+    <h4 id="user-phone">Phone: <%= user.profile[0].phone%></h4>
+    <h4 id="user-email">Email: <%= user.profile[0].email%></h4>
+    <h4 id="user-facebook">Facebook: <%= user.profile[0].facebook%></h4>
+    <h4 id="user-twitter">Twitter: <%= user.profile[0].twitter%></h4>
+    <h4 id="user-reddit">Reddit: <%= user.profile[0].reddit%></h4>
+
+    <% if(currentUser && user._id.equals(currentUser._id)){ %>
+      <button id = "edit-profile-btn" class="btn btn-sm btn-warning" type="button" name="button">Edit Profile</button>
+      <div id="edit-profile-container" class="container" style="display: none">
+
+        <div class="container">
+          <div class="row">
+              <h1>Edit Profile</h1>
+                <form id="edit-profile-form">
+                  <div class="form-group">
+                      <label for="name">Location:</label>
+                      <input type="text" name="location" value="<%= user.profile[0].location%>">
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Email:</label>
+                    <input type="text" name="email" value="<%= user.profile[0].email%>">
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Phone:</label>
+                    <input type="text" name="phone" value="<%= user.profile[0].phone%>">
+                  </div>
+                    <div class="form-group">
+                    <label for="name">Facebook:</label>
+                    <input type="text" name="facebook" value="<%= user.profile[0].facebook%>">
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Twitter:</label>
+                    <input type="text" name="twitter" value="<%= user.profile[0].twitter%>">
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Reddit:</label>
+                    <input type="text" name="reddit" value="<%= user.profile[0].reddit%>">
+                  </div>
+                  <button id="cancel-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">cancel</button>
+                  <button id="save-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">save</button>
+
+                </form>
+            </div>
+        </div>
+    <% } else { %>
+
+      <!-- // if contact request already sent, display cancel button else display send request button -->
+    <%  if ( user.friend_requests_recvd.length !== 0){ %>
+      <%    currentUser.friend_requests_sent.some(function(el){ %>
+        <%     if (el.friend_name === user.username){ %>
+              <!-- // friend request already sent -->
+              <button style="" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
+              <button style="display: none" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
+              <% } %>
+              <%    return el.friend_name === user.username %>
+          <%}) %>
+
+          <%}else{ %>
+            <!--  no friend request sent -->
+            <button style="display: none" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
+            <button style="" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
+          <% } %>
+    <% } %>
+
+  </div>
+</body>
+
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/functions.js"></script>
+<script type="text/javascript">
+
+
+
+
+
+
+
+
+
+  $("#save-edit-profile-btn").on("click", function(){
+    $.ajax({
+      method: "PUT",
+      url: "./<%=user._id%>/edit",
+      data:  $("#edit-profile-form").serialize(),
+      success: function(updated_user){
+        $("#edit-profile-container").hide();
+        // console.log("updated_user", updated_user);
+        $("#user-location").html("Location: " + updated_user.profile[0].location);
+        $("#user-phone").html("Phone: " + updated_user.profile[0].phone);
+        $("#user-email").html("Email: " + updated_user.profile[0].email);
+        $("#user-facebook").html("Facebook: " + updated_user.profile[0].facebook);
+        $("#user-twitter").html("Twitter: " + updated_user.profile[0].twitter);
+        $("#user-reddit").html("Reddit: " + updated_user.profile[0].reddit);
+      }
+    })
+  })
+
+
+  $("#edit-profile-btn").on("click", function(){
+    $("#edit-profile-container").show();
+  })
+  $("#cancel-edit-profile-btn").on("click", function(){
+    $("#edit-profile-container").hide();
+  })
+
+  $("#contact-request-btn").on("click", function(){
+    $.ajax({
+        method: "GET",
+        url: "/contacts/contact-request/<%=user._id%>",
+        success:  function(){
+          $("#contact-request-btn").hide();
+          $("#contact-cancel-btn").show();
+
+        }
+      })
+  })
+
+  $("#contact-cancel-btn").on("click", function(){
+    $.ajax({
+      method: "POST",
+      url: "/contacts/contact-cancel-request",
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({"id": "<%=user.member_id%>"}),
+      success: function(){
+        $("#contact-request-btn").show();
+        $("#contact-cancel-btn").hide();
+      }
+    })
+  })
+
+
+
+</script>
+</html>

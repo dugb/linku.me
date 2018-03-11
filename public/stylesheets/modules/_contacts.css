@@ -1,0 +1,25 @@
+.contacts {
+
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;
+  justify-content: space-around;
+}
+
+.requests {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  flex-wrap: nowrap;
+}
+
+.contact-name{
+  font-size: 1.2rem;
+  opacity: .8;
+  color: green;
+}
+
+.contact-location{
+  font-size: .8rem;
+  opacity: .6;
+}

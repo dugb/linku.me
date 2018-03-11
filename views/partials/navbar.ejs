@@ -1,0 +1,24 @@
+<div class="fixed-navbar">
+
+  <div class="navbar-lockup">
+    <div class="logo logo-text">
+      <!-- <a href=""><img src="assets/img/logo2.png" alt="linkU.Me"> </a> -->
+      linkU.ME
+    </div>
+
+    <ul class="nav">
+
+      <%  if(!currentUser){ %>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">Sign Up</a></li>
+      <%  } else { %>
+          <li><a href="/user-profile/<%= currentUser.member_id %>">Welcome <%= currentUser.username %></a></li>
+          <li><a href="/userhome">Home</a></li>
+          <li><a href="/user-profile/<%= currentUser.member_id %>">Profile</a></li>
+          <li><a href="">Settings</a></li>
+          <li><a href="/logout">Logout</a></li>
+      <%  } %>
+
+    </ul>
+  </div>
+</div>

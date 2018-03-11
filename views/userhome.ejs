@@ -1,0 +1,133 @@
+<% include ./partials/header %>
+<!-- <link rel="stylesheet" href="/stylesheets/userhome.css"> -->
+<link rel="stylesheet" href="/temp/styles/styles.css">
+</head>
+<body class = "mobile-shift">
+  <header>
+    <% include ./partials/navbar %>
+    <div class = "hero"></div>
+    <% include ./partials/slide-out-nav %>
+  </header>
+
+  <section class = "contacts">
+
+  <!-- contact list -->
+  <div class="">
+    <h3>Contacts</h3>
+    <ul id="contact-list">
+      <% currentUser.friends.forEach(function(friends){ %>
+      <% if(friends){ %>
+      <li class = "contact">
+        <span class = "contact-name"><%= friends.friend_name %></span>
+        <a class = "btn btn-sm btn-info" href="/user-profile/<%= friends.member_id %>">view</a>
+        <button id = "<%= friends.member_id %>" class="btn btn-sm btn--red remove-friend" type="button" name="button">remove</button>
+
+      </li>
+      <% }}) %>
+    </ul>
+  </div>
+
+  <!-- Contact Requests Rcvd -->
+  <div class="requests">
+    <h3>Requests</h3>
+    <ul id="contact-requests-rcvd">
+      <% currentUser.friend_requests_recvd.forEach(function(friend_request){ %>
+        <% if(friend_request){ %>
+        <li id = "potential-friend"><span class="contact-name"><%= friend_request.friend_name %></span>
+          <a class = "btn btn-sm btn-info" href="/user-profile/<%= friend_request.member_id %>" >view</a>
+          <button id = "<%= friend_request.id %>" class="btn btn-sm btn--orange accept-friend-request" type="button" name="button">accept</button>
+          <!-- <a href="/user-profile/accept-friend-request/<%= friend_request.id %>" >accept</a> -->
+        </li>
+      <% }}) %>
+    </ul>
+  </div>
+
+
+
+  <!-- SEARCH -->
+  <div class="search">
+    <div class="">
+      <h3>Find Contacts</h3>
+      <form id="search-form">
+      <div class="form-group">
+        <label for="name">Email, Username or phone:</label><br>
+        <input type="text" name="lookup" value="" placeholder="search">
+        <button id="search-btn" class="btn btn-warning" type="button" name="button">search</button>
+      </div>
+    </div>
+
+    <div class="">
+      <div id="search-results" class="search-results" style="display: none">
+        <h3>Search Results</h3>
+        <ul id="search-results-list">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+
+</body>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/functions.js"></script>
+<script type="text/javascript">
+  $("#search-btn").on("click", function(){
+    $.ajax({
+      method: "PUT",
+      url: "user-search",
+      data: $("#search-form").serialize(),
+      success: function(search_results){
+        // console.log("Search Results", lookup_results);
+        $("#search-results").show();
+        $("#search-results-list").empty();
+
+        search_results.forEach(function(found_user){
+          var $newli = $("<li><a class='contact-name' href=/user-profile/" + found_user.member_id + ">" + found_user.username + "</a>, <span class='contact-location'>" + found_user.profile[0].location + "</span></li>")
+          $("#search-results-list").append($newli)
+        });
+      }
+    });
+  });
+
+  $(".accept-friend-request").on("click", function(){
+    var clicked_button = $(this);
+    console.log("btn_id: ", clicked_button.attr("id"));
+    $.ajax({
+      method: "POST",
+      url: "contacts/accept-contact-request",
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({"id": clicked_button.attr("id")}),
+      success: function(newContact){
+        clicked_button.closest("#potential-friend").remove();
+        console.log("Contacts: ", newContact);
+        // add new contact and view/remove buttons to the contacts list.
+        var $newli = $("<li id='contact'>" + "<span class='contact-name'>" + newContact.friend_name + "</span> " + " " +
+                      "<a class = 'btn btn-sm btn-info'href=/user-profile/" + newContact.member_id + ">view</a> "+
+                      "<button id = 'newContact.member_id' class = 'btn btn-sm btn--red' type = 'button' name = 'button'>remove</button></li>");
+        $("#contact-list").append($newli);
+      }
+    })
+  });
+
+  $(".remove-friend").on("click", function(){
+    var clicked_button = $(this);
+    console.log("btn_id: ", clicked_button.attr("id"));
+    $.ajax({
+      method: "POST",
+      url: "contacts/remove-contact",
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify({"id": clicked_button.attr("id")}),
+      success: function(){
+        clicked_button.closest(".contact").remove();
+      }
+    })
+  })
+
+</script>
+
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+      <link rel="stylesheet" href="stylesheets/landing.css">
+        <title>linkU.Me</title>
+
+    </head>
+    <body>
+
+  <section class="hero">
+    <div class="hero--background-image" style="background-image: url(images/landing001.jpg);"></div>
+    <div class="hero--content-area">
+      <h1 class = "hero--title">linkU.Me</h1>
+      <h3 class = "hero--caption">share your social media links.<br>stay up to date with your contacts social media links.</h3>
+        <% if(!currentUser){ %>
+            <div class="hero--subtitle">
+              <h2 class = "hero--subtitle">Get Started Now!  It's free!</h2>
+              <a href="/register" class="btn">Sign Up</a>
+            </div>
+            <div class="hero--subtitle">
+              <h2 class = "hero--subtitle">Already have an account?</h2>
+              <a href="/login" class="btn">Login</a>
+            </div>
+        <% }else{ %>
+            <div class = "hero--subtitle">
+              <h4>Hello, <%= currentUser.username %>!</h4>
+            </div>
+             <div class="hero--subtitle">
+               <a href="/userhome" class="btn"> Home </a>
+             </div>
+             <div class="hero--subtitle">
+               <a href="/logout" class="btn">Log out</a>
+             </div>
+        <% } %>
+    </div>
+  </section>
+
+    </body>
+</html>

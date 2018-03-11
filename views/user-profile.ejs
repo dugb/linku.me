@@ -1,0 +1,82 @@
+<% include ./partials/header %>
+
+<h1>User Profile</h1>
+<img src="/images/profile-images/<%=currentUser.avatar%>" alt="">
+<h4><%= currentUser.username %></h4>
+<h4>email: <%= currentUser.email %></h4>
+<h4 id="user-location">Location: <%= currentUser.profile[0].location %></h4>
+<h4 id="user-phone">Phone: <%= currentUser.profile[0].phone%></h4>
+<h4 id="user-email">Email: <%= currentUser.profile[0].email%></h4>
+<h4 id="user-facebook">Facebook: <%= currentUser.profile[0].facebook%></h4>
+<h4 id="user-twitter">Twitter: <%= currentUser.profile[0].twitter%></h4>
+
+<button id = "edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">Edit Profile</button>
+
+<div id="edit-profile-container" class="container" style="display: none">
+
+  <div class="container">
+    <div class="row">
+        <h1>Edit Profile</h1>
+          <form id="edit-profile-form">
+            <div class="form-group">
+                <label for="name">Location:</label>
+                <input type="text" name="location" value="<%= currentUser.profile[0].location%>">
+            </div>
+            <div class="form-group">
+              <label for="name">Email:</label>
+              <input type="text" name="email" value="<%= currentUser.profile[0].email%>">
+            </div>
+            <div class="form-group">
+              <label for="name">Phone:</label>
+              <input type="text" name="phone" value="<%= currentUser.profile[0].phone%>">
+            </div>
+              <div class="form-group">
+              <label for="name">Facebook:</label>
+              <input type="text" name="facebook" value="<%= currentUser.profile[0].facebook%>">
+            </div>
+            <div class="form-group">
+              <label for="name">Twitter:</label>
+              <input type="text" name="twitter" value="<%= currentUser.profile[0].twitter%>">
+            </div>
+            <button id="cancel-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">cancel</button>
+            <button id="save-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">save</button>
+
+          </form>
+      </div>
+  </div>
+
+
+  </form>
+</div>
+</body>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+
+$("#save-edit-profile-btn").on("click", function(){
+  $.ajax({
+    method: "PUT",
+    url: "user-profile/edit",
+    data:  $("#edit-profile-form").serialize(),
+    success: function(updated_user){
+      $("#edit-profile-container").hide();
+      // console.log("updated_user", updated_user);
+      $("#user-location").html("Location: " + updated_user.profile[0].location);
+      $("#user-phone").html("Phone: " + updated_user.profile[0].phone);
+      $("#user-email").html("Email: " + updated_user.profile[0].email);
+      $("#user-facebook").html("Facebook: " + updated_user.profile[0].facebook);
+      $("#user-twitter").html("Twitter: " + updated_user.profile[0].twitter);
+    }
+  })
+})
+
+
+$("#edit-profile-btn").on("click", function(){
+  $("#edit-profile-container").show();
+})
+$("#cancel-edit-profile-btn").on("click", function(){
+  $("#edit-profile-container").hide();
+})
+
+
+</script>
+</html>

@@ -1,0 +1,24 @@
+.btn {
+  background-color: $mainBlue;
+  color: #FFF;
+  text-decoration: none;
+  padding: .2rem .8rem;
+  display: inline-block;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  opacity: .75;
+
+  &:hover{
+    opacity: .9;
+  }
+
+  &--orange{
+    background-color: $mainOrange;
+  }
+
+  &--red{
+    background-color: $danger;
+  }
+
+}
