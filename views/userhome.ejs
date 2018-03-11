@@ -106,26 +106,32 @@
         // add new contact and view/remove buttons to the contacts list.
         var $newli = $("<li id='contact'>" + "<span class='contact-name'>" + newContact.friend_name + "</span> " + " " +
                       "<a class = 'btn btn-sm btn-info'href=/user-profile/" + newContact.member_id + ">view</a> "+
-                      "<button id = 'newContact.member_id' class = 'btn btn-sm btn--red' type = 'button' name = 'button'>remove</button></li>");
+                      "<button id = '"+newContact.member_id+"' class = 'btn btn-sm btn--red remove-friend'>remove</button></li>");
+
+
         $("#contact-list").append($newli);
       }
     })
   });
 
-  $(".remove-friend").on("click", function(){
-    var clicked_button = $(this);
-    console.log("btn_id: ", clicked_button.attr("id"));
-    $.ajax({
-      method: "POST",
-      url: "contacts/remove-contact",
-      contentType: "application/json",
-      dataType: "json",
-      data: JSON.stringify({"id": clicked_button.attr("id")}),
-      success: function(){
-        clicked_button.closest(".contact").remove();
-      }
-    })
+
+$(document).on('click','.remove-friend', function(){
+
+  var clicked_button = $(this);
+  console.log("clicked: ", clicked_button);
+  console.log("btn_id: ", clicked_button.attr("id"));
+  $.ajax({
+    method: "POST",
+    url: "contacts/remove-contact",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({"id": clicked_button.attr("id")}),
+    success: function(){
+      clicked_button.parents('li').remove();
+    }
   })
+});
+
 
 </script>
 
