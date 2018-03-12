@@ -69,17 +69,20 @@ section {
     font: bold 4rem "Open Sans", sans-serif;
     color: #4db584;
   }
+}
 
 .hero--subtitle {
   font: bold 1.4rem "Open Sans", sans-serif;
   margin-bottom: 30px;
   color: #2f2f2f;
 }
+
 @media screen and (max-width: 800px){
   .hero--subtitle {
     font: bold 1.2rem "Open Sans", sans-serif;
     color: #2f2f2f;
   }
+}
 
 .hero--caption {
   font: bold 2.2rem "Open Sans", sans-serif;
@@ -92,7 +95,7 @@ section {
     font: bold 1.2rem "Open Sans", sans-serif;
     color: #2f2f2f;
   }
-
+}
 
 .hero a.btn {
   padding: 10px 16px;
