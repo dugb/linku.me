@@ -6,17 +6,17 @@
 <% include ../partials/slide-out-nav %>
 
 
-  <div class="">
-    <img src="/images/profile-images/<%=user.avatar%>" alt="">
-    <h4><%= user.username %></h4>
-    <h4>email: <%= user.email %></h4>
-    <h4>member_id: <%= user.member_id %></h4>
-    <h4 id="user-location">Location: <%= user.profile[0].location %></h4>
-    <h4 id="user-phone">Phone: <%= user.profile[0].phone%></h4>
-    <h4 id="user-email">Email: <%= user.profile[0].email%></h4>
-    <h4 id="user-facebook">Facebook: <%= user.profile[0].facebook%></h4>
-    <h4 id="user-twitter">Twitter: <%= user.profile[0].twitter%></h4>
-    <h4 id="user-reddit">Reddit: <%= user.profile[0].reddit%></h4>
+  <div class="profile">
+    <img class = "profile--pic"src="/images/profile-images/<%=user.avatar%>" alt="">
+    <h4 class="profile--item"><%= user.username %></h4>
+    <h4 class="profile--item">email: <%= user.email %></h4>
+    <h4 class="profile--item">member_id: <%= user.member_id %></h4>
+    <h4 class="profile--item" id="user-location">Location: <%= user.profile[0].location %></h4>
+    <h4 class="profile--item" id="user-phone">Phone: <%= user.profile[0].phone%></h4>
+    <h4 class="profile--item" id="user-email">Email: <%= user.profile[0].email%></h4>
+    <h4 class="profile--item" id="user-facebook">Facebook: <%= user.profile[0].facebook%></h4>
+    <h4 class="profile--item" id="user-twitter">Twitter: <%= user.profile[0].twitter%></h4>
+    <h4 class="profile--item" id="user-reddit">Reddit: <%= user.profile[0].reddit%></h4>
 
     <% if(currentUser && user._id.equals(currentUser._id)){ %>
       <button id = "edit-profile-btn" class="btn btn-sm btn-warning" type="button" name="button">Edit Profile</button>
@@ -77,6 +77,7 @@
     <% } %>
 
   </div>
+</div>
 </body>
 
 <script src="../js/jquery-1.11.1.min.js"></script>

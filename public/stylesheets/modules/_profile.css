@@ -1,0 +1,24 @@
+.profile {
+  margin-top: 8rem;
+  margin-left: 20px
+
+}
+
+.profile--item {
+  font: normal 1.4rem "Open Sans", sans-serif;
+  margin-bottom: 8px;
+  color: #2f2f2f;
+}
+
+@media screen and (max-width: 800px){
+  .profile--item {
+    font: normal 1.2rem "Open Sans", sans-serif;
+    margin-bottom: 6px;
+    color: #2f2f2f;
+  }
+}
+
+.profile--pic {
+  margin-bottom: 15px;
+  border-radius: 24px
+}
