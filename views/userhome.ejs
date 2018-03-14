@@ -12,7 +12,7 @@
   <section class = "contacts">
 
   <!-- contact list -->
-  <div class="">
+  <div class="contacts-list">
     <h3>Contacts</h3>
     <ul id="contact-list">
       <% currentUser.friends.forEach(function(friends){ %>
@@ -28,7 +28,7 @@
   </div>
 
   <!-- Contact Requests Rcvd -->
-  <div class="requests">
+  <div class="requests-list">
     <h3>Requests</h3>
     <ul id="contact-requests-rcvd">
       <% currentUser.friend_requests_recvd.forEach(function(friend_request){ %>
@@ -45,7 +45,7 @@
 
 
   <!-- SEARCH -->
-  <div class="search">
+  <div class="contacts-search">
     <div class="">
       <h3>Find Contacts</h3>
       <form id="search-form">

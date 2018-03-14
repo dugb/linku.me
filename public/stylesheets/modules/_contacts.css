@@ -1,12 +1,28 @@
 .contacts {
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items:flex-start;
   justify-content: space-around;
+  margin-left: 20px;
+  margin-right:20px;
+
+  @mixin atMedium{
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    justify-content: space-around;
+
+  }
 }
 
-.requests {
+.contacts-list {
+  margin-bottom: 20px;
+}
+
+
+.requests-list {
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items:flex-start;
