@@ -6,6 +6,7 @@
 <% include ../partials/slide-out-nav %>
 
 
+
   <div class="profile">
     <img class = "profile--pic"src="/images/profile-images/<%=user.avatar%>" alt="">
     <h4 class="profile--item"><%= user.username %></h4>
@@ -57,23 +58,20 @@
             </div>
         </div>
     <% } else { %>
-
-      <!-- // if contact request already sent, display cancel button else display send request button -->
-    <%  if ( user.friend_requests_recvd.length !== 0){ %>
-      <%    currentUser.friend_requests_sent.some(function(el){ %>
-        <%     if (el.friend_name === user.username){ %>
-              <!-- // friend request already sent -->
+        <!-- check if profile is a contact FYI checkContact and checkRequestSent functions are declared at bottom of page -->
+        <% if(currentUser.friends.some(checkContact)){ %>
+          <p>its your friend!!!</p>
+        <% }else{ %>
+          <!-- check if contact request has been sent -->
+            <% if(currentUser.friend_requests_sent.some(checkRequestSent)){ %>
               <button style="" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
               <button style="display: none" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
-              <% } %>
-              <%    return el.friend_name === user.username %>
-          <%}) %>
-
-          <%}else{ %>
-            <!--  no friend request sent -->
-            <button style="display: none" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
-            <button style="" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
-          <% } %>
+            <% }else{ %>
+              <!-- not a contact and no contact request has been sent -->
+              <button style="display: none" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
+              <button style="" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
+            <% } %>
+        <% } %>
     <% } %>
 
   </div>
@@ -140,3 +138,11 @@
 
 </script>
 </html>
+<!--FUNCTIONS  -->
+<%function checkRequestSent(el){%>
+  <%return el.friend_name === user.username; %>
+<%}%>
+
+<%function checkContact(el){%>
+  <%return el.friend_name === user.username; %>
+<%}%>
