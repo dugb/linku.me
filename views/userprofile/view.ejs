@@ -5,19 +5,20 @@
 <% include ../partials/navbar %>
 <% include ../partials/slide-out-nav %>
 
-
-
   <div class="profile">
     <img class = "profile--pic"src="/images/profile-images/<%=user.avatar%>" alt="">
     <h4 class="profile--item"><%= user.username %></h4>
     <h4 class="profile--item">email: <%= user.email %></h4>
     <h4 class="profile--item">member_id: <%= user.member_id %></h4>
-    <h4 class="profile--item" id="user-location">Location: <%= user.profile[0].location %></h4>
-    <h4 class="profile--item" id="user-phone">Phone: <%= user.profile[0].phone%></h4>
-    <h4 class="profile--item" id="user-email">Email: <%= user.profile[0].email%></h4>
-    <h4 class="profile--item" id="user-facebook">Facebook: <%= user.profile[0].facebook%></h4>
-    <h4 class="profile--item" id="user-twitter">Twitter: <%= user.profile[0].twitter%></h4>
-    <h4 class="profile--item" id="user-reddit">Reddit: <%= user.profile[0].reddit%></h4>
+    <h4 class="profile--item" id="user-location">Location: <%= user.profile[0].location.location %></h4>
+    <h4 class="profile--item" id="user-phone">Phone: <%= user.profile[0].phone.phone%></h4>
+    <h4 class="profile--item" id="user-email">Email: <%= user.profile[0].email.email%></h4>
+    <h4 class="profile--item" id="user-facebook">Facebook: <%= user.profile[0].facebook.facebook%></h4>
+    <h4 class="profile--item" id="user-twitter">Twitter: <%= user.profile[0].twitter.twitter%></h4>
+    <h4 class="profile--item" id="user-reddit">Reddit: <%= user.profile[0].reddit.reddit%></h4>
+    <h4 class="profile--item" id="user-reddit">Snapchat: <%= user.profile[0].snapchat.snapchat%></h4>
+    <h4 class="profile--item" id="user-reddit">Instagram: <%= user.profile[0].instagram.instagram%></h4>
+    <h4 class="profile--item" id="user-reddit">Github: <%= user.profile[0].github.github%></h4>
 
     <% if(currentUser && user._id.equals(currentUser._id)){ %>
       <button id = "edit-profile-btn" class="btn btn-sm btn-warning" type="button" name="button">Edit Profile</button>
@@ -29,7 +30,7 @@
                 <form id="edit-profile-form">
                   <div class="form-group">
                       <label for="name">Location:</label>
-                      <input type="text" name="location" value="<%= user.profile[0].location%>">
+                      <input type="text" name="location" value="<%= user.profile[0].location.location%>">
                   </div>
                   <div class="form-group">
                     <label for="name">Email:</label>
@@ -41,7 +42,7 @@
                   </div>
                     <div class="form-group">
                     <label for="name">Facebook:</label>
-                    <input type="text" name="facebook" value="<%= user.profile[0].facebook%>">
+                    <input type="text" name="facebook" value="<%= user.profile[0].facebook.facebook%>">
                   </div>
                   <div class="form-group">
                     <label for="name">Twitter:</label>
@@ -90,10 +91,10 @@
       success: function(updated_user){
         $("#edit-profile-container").hide();
         // console.log("updated_user", updated_user);
-        $("#user-location").html("Location: " + updated_user.profile[0].location);
+        $("#user-location").html("Location: " + updated_user.profile[0].location.location);
         $("#user-phone").html("Phone: " + updated_user.profile[0].phone);
         $("#user-email").html("Email: " + updated_user.profile[0].email);
-        $("#user-facebook").html("Facebook: " + updated_user.profile[0].facebook);
+        $("#user-facebook").html("Facebook: " + updated_user.profile[0].facebook.facebook);
         $("#user-twitter").html("Twitter: " + updated_user.profile[0].twitter);
         $("#user-reddit").html("Reddit: " + updated_user.profile[0].reddit);
       }

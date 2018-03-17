@@ -15,7 +15,9 @@ middlewareObj.checkProfileOwnership = function(req, res, next) {
       //is user logged in?
       if(req.isAuthenticated()){
         console.log('req.params.id: ', req.params.id);
-        User.findById(req.params.id, function(err, foundUser){
+
+        User.findOne({"member_id": req.params.id}, function(err, foundUser){
+        // User.findById(req.params.id, function(err, foundUser){
           if(err){
             req.flash('error', 'User Profile not found');
             res.redirect('back');

@@ -3,15 +3,42 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var shortid = require('shortid');
 
 var UserProfileSchema = mongoose.Schema({
-  location: {type: String, default: "None"},
-  facebook: {type: String, default: "None"},
-  twitter: {type: String, default: "None"},
-  snapchat: {type: String, default: "None"},
-  instagram: {type: String, default: "None"},
-  email: {type: String, default: "None"},
-  phone: {type: String, default: "None"},
-  reddit: {type: String, default: ""},
-  github: {type: String, default: ""}
+  location: {
+    location: {type: String, default: "None"},
+    privacy:  {type: String, default: "private"}
+  },
+  facebook: {
+    facebook: {type: String, default: "None"},
+    privacy:  {type: String, default: "private"}
+  },
+  twitter: {
+    twitter:  {type: String, default: "None"},
+    privacy:  {type: String, default: "private"}
+  },
+  snapchat: {
+    snapchat: {type: String, default: "None"},
+    privacy:  {type: String, default: "private"}
+  },
+  instagram: {
+    instagram: {type: String, default: "None"},
+    privacy:  {type: String, default: "private"}
+  },
+  email: {
+    email:  {type: String, default: "None"},
+    privacy:  {type: String, default: "private"}
+  },
+  phone: {
+    phone: {type: String, default: "None"},
+    privacy:  {type: String, default: "private"}
+  },
+  reddit: {
+    reddit: {type: String, default: ""},
+    privacy:  {type: String, default: "private"}
+  },
+  github: {
+    github: {type: String, default: ""},
+    privacy:  {type: String, default: "private"}
+  }
 
 });
 

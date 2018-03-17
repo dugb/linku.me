@@ -12,9 +12,9 @@
           <li><a href="/login">Login</a></li>
           <li><a href="/register">Sign Up</a></li>
       <%  } else { %>
-          <li><a href="/user-profile/<%= currentUser.member_id %>">Welcome <%= currentUser.username %></a></li>
+          <li><a href="/user-profile">Welcome <%= currentUser.username %></a></li>
           <li><a href="/userhome">Home</a></li>
-          <li><a href="/user-profile/<%= currentUser.member_id %>">Profile</a></li>
+          <li><a href="/user-profile">Profile</a></li>
           <li><a href="">Settings</a></li>
           <li><a href="/logout">Logout</a></li>
       <%  } %>

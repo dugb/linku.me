@@ -84,7 +84,7 @@
         $("#search-results-list").empty();
 
         search_results.forEach(function(found_user){
-          var $newli = $("<li><a class='contact-name' href=/user-profile/" + found_user.member_id + ">" + found_user.username + "</a>, <span class='contact-location'>" + found_user.profile[0].location + "</span></li>")
+          var $newli = $("<li><a class='contact-name' href=/user-profile/" + found_user.member_id + ">" + found_user.username + "</a>, <span class='contact-location'>" + "</span></li>")
           $("#search-results-list").append($newli)
         });
       }

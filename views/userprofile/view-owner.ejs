@@ -1,0 +1,171 @@
+<link rel="stylesheet" href="/temp/styles/styles.css">
+</head>
+<body class = "mobile-shift">
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+<% include ../partials/slide-out-nav %>
+
+  <div class="profile">
+    <img class = "profile--pic"src="/images/profile-images/<%=currentUser.avatar%>" alt="">
+    <h4 class="profile--item"><%= currentUser.username %></h4>
+    <h4 class="profile--item">email: <%= currentUser.email %></h4>
+    <h4 class="profile--item">member_id: <%= currentUser.member_id %></h4>
+    <div class="">
+      <span class="profile--item" id="user-location">Location: <%= currentUser.profile[0].location.location %></span>
+      <span id="user-locationPriv"><%= currentUser.profile[0].location.privacy %></span>
+    </div>
+    <div class="">
+      <span class="profile--item" id="user-phone">Phone: <%= currentUser.profile[0].phone.phone%></span>
+      <span id="user-phonePriv"><%= currentUser.profile[0].phone.privacy %></span>
+    </div>
+    <div class="">
+      <span class="profile--item" id="user-email">Email: <%= currentUser.profile[0].email.email%></span>
+      <span id="user-emailPriv"><%= currentUser.profile[0].email.privacy %></span>
+    </div>
+
+    <div class="">
+      <span class="profile--item" id="user-facebook">Facebook: <%= currentUser.profile[0].facebook.facebook%></span>
+      <span id="user-facebookPriv"><%= currentUser.profile[0].facebook.privacy %></span>
+    </div>
+
+    <div class="">
+      <span class="profile--item" id="user-twitter">Twitter: <%= currentUser.profile[0].twitter.twitter%></span>
+      <span id="user-twitterPriv"><%= currentUser.profile[0].twitter.privacy %></span>
+    </div>
+
+    <div class="">
+      <span class="profile--item" id="user-reddit">Reddit: <%= currentUser.profile[0].reddit.reddit%></span>
+      <span id="user-redditPriv"><%= currentUser.profile[0].reddit.privacy %></span>
+    </div>
+
+    <div class="">
+      <span class="profile--item" id="user-snapchat">Snapchat: <%= currentUser.profile[0].snapchat.snapchat%></span>
+      <span id="user-snapchatPriv"><%= currentUser.profile[0].snapchat.privacy %></span>
+    </div>
+
+    <div class="">
+      <span class="profile--item" id="user-instagram">Instagram: <%= currentUser.profile[0].instagram.instagram%></span>
+      <span id="user-instagramPriv"><%= currentUser.profile[0].instagram.privacy %></span>
+    </div>
+
+    <div class="">
+      <span class="profile--item" id="user-github">Github: <%= currentUser.profile[0].github.github%></span>
+      <span id="user-githubPriv"><%= currentUser.profile[0].github.privacy %></span>
+    </div>
+
+      <button id = "edit-profile-btn" class="btn btn-sm btn-warning" type="button" name="button">Edit Profile</button>
+      <div id="edit-profile-container" class="container" style="display: none">
+        <h1>Edit Profile</h1>
+          <form id="edit-profile-form">
+            <div class="form-group">
+                <label for="locationInput">Location:</label>
+                <input id="locationInput" type="text" name="location" value="<%= currentUser.profile[0].location.location%>">
+                <label for="locationCheckbox">Private:</label>
+                <input id="locationCheckbox"type="checkbox" name="locationCheckbox"  <%=currentUser.profile[0].location.privacy == "private" ? "checked" : "" %>>
+            </div>
+            <div class="form-group">
+              <label for="name">Email:</label>
+              <input type="text" name="email" value="<%= currentUser.profile[0].email.email%>">
+              <label for="emailCheckbox">Private:</label>
+              <input id="emailCheckbox"type="checkbox" name="emailCheckbox" <%=currentUser.profile[0].email.privacy == "private" ? "checked" : "" %>>
+            </div>
+            <div class="form-group">
+              <label for="name">Phone:</label>
+              <input type="text" name="phone" value="<%= currentUser.profile[0].phone.phone%>">
+              <label for="phoneCheckbox">Private:</label>
+              <input id="phoneCheckbox"type="checkbox" name="phoneCheckbox" <%=currentUser.profile[0].phone.privacy == "private" ? "checked" : "" %>>
+            </div>
+              <div class="form-group">
+              <label for="facebookInput">Facebook:</label>
+              <input id="facebookInput" type="text" name="facebook" value="<%= currentUser.profile[0].facebook.facebook%>">
+              <label for="facebookCheckbox">Private:</label>
+              <input id="facebookCheckbox"type="checkbox" name="facebookCheckbox" <%=currentUser.profile[0].facebook.privacy == "private" ? "checked" : "" %>>
+            </div>
+            <div class="form-group">
+              <label for="twitterInput">Twitter:</label>
+              <input id="twitterInput" type="text" name="twitter" value="<%= currentUser.profile[0].twitter.twitter%>">
+              <label for="twitterCheckbox">Private:</label>
+              <input id="twitterCheckbox"type="checkbox" name="twitterCheckbox" <%=currentUser.profile[0].twitter.privacy == "private" ? "checked" : "" %>>
+
+            </div>
+            <div class="form-group">
+              <label for="redditInput">Reddit:</label>
+              <input id="redditInput" type="text" name="reddit" value="<%= currentUser.profile[0].reddit.reddit%>">
+              <label for="redditCheckbox">Private:</label>
+              <input id="redditCheckbox"type="checkbox" name="redditCheckbox" <%=currentUser.profile[0].reddit.privacy == "private" ? "checked" : "" %>>
+            </div>
+            <div class="form-group">
+              <label for="snapchatInput">Snapchat:</label>
+              <input id="snapchatInput" type="text" name="snapchat" value="<%= currentUser.profile[0].snapchat.snapchat%>">
+              <label for="snapchatCheckbox">Private:</label>
+              <input id="snapchatCheckbox"type="checkbox" name="snapchatCheckbox" <%=currentUser.profile[0].snapchat.privacy == "private" ? "checked" : "" %>>
+            </div>
+            <div class="form-group">
+              <label for="instagramInput">Instagram:</label>
+              <input id="instagramInput" type="text" name="instagram" value="<%= currentUser.profile[0].instagram.instagram%>">
+              <label for="instagramCheckbox">Private:</label>
+              <input id="instagramCheckbox"type="checkbox" name="instagramCheckbox" <%=currentUser.profile[0].instagram.privacy == "private" ? "checked" : "" %>>
+            </div>
+            <div class="form-group">
+              <label for="githubInput">GitHub:</label>
+              <input id="githubInput" type="text" name="github" value="<%= currentUser.profile[0].github.github%>">
+              <label for="githubCheckbox">Private:</label>
+              <input id="githubCheckbox"type="checkbox" name="githubCheckbox" <%=currentUser.profile[0].github.privacy == "private" ? "checked" : "" %>>
+
+            </div>
+
+            <button id="cancel-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">cancel</button>
+            <button id="save-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">save</button>
+
+          </form>
+  </div>
+</div>
+</body>
+
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+
+  $("#save-edit-profile-btn").on("click", function(){
+    var url = "user-profile/edit/<%=currentUser.member_id%>";
+    console.log("url", url);
+    $.ajax({
+      method: "PUT",
+      url: url,
+      data:  $("#edit-profile-form").serialize(),
+      success: function(updated_user){
+
+        $("#edit-profile-container").hide();
+        console.log("updated_user: ", updated_user);
+        $("#user-location").html("Location: " + updated_user.profile[0].location.location);
+        $("#user-locationPriv").html(updated_user.profile[0].location.privacy);
+        $("#user-facebook").html("Facebook: " + updated_user.profile[0].facebook.facebook);
+        $("#user-facebookPriv").html(updated_user.profile[0].facebook.privacy);
+        $("#user-phone").html("Phone: " + updated_user.profile[0].phone.phone);
+        $("#user-phonePriv").html(updated_user.profile[0].phone.privacy);
+        $("#user-email").html("Email: " + updated_user.profile[0].email.email);
+        $("#user-emailPriv").html(updated_user.profile[0].email.privacy);
+        $("#user-twitter").html("Twitter: " + updated_user.profile[0].twitter.twitter);
+        $("#user-twitterPriv").html(updated_user.profile[0].twitter.privacy);
+        $("#user-reddit").html("Reddit: " + updated_user.profile[0].reddit.reddit);
+        $("#user-redditPriv").html(updated_user.profile[0].reddit.privacy);
+        $("#user-snapchat").html("Reddit: " + updated_user.profile[0].snapchat.snapchat);
+        $("#user-snapchatPriv").html(updated_user.profile[0].snapchat.privacy);
+        $("#user-instagram").html("Reddit: " + updated_user.profile[0].instagram.instagram);
+        $("#user-instagramPriv").html(updated_user.profile[0].instagram.privacy);
+        $("#user-github").html("Reddit: " + updated_user.profile[0].github.github);
+        $("#user-githubPriv").html(updated_user.profile[0].github.privacy);
+      }
+    })
+  })
+
+
+  $("#edit-profile-btn").on("click", function(){
+    $("#edit-profile-container").show();
+  })
+  $("#cancel-edit-profile-btn").on("click", function(){
+    $("#edit-profile-container").hide();
+  })
+
+</script>
+</html>
+<!--FUNCTIONS  -->
