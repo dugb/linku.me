@@ -86,10 +86,12 @@ a{
 .navbar-lockup .nav li a {
   color: blue;
   opacity: .9;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: .8px;
   transition: color .2s ease-in-out;
+
+
 }
 
 .navbar-lockup .nav li a:hover {

@@ -7,11 +7,13 @@
   <% include ../partials/navbar %>
   <% include ../partials/slide-out-nav %>
   </header>
-  <div class="profile">
-    <img class = "profile--pic"src="/images/profile-images/<%=currentUser.avatar%>" alt="">
-    <h4 class="profile--item"><%= currentUser.username %></h4>
-    <h4 class="profile--item">email: <%= currentUser.email %></h4>
-    <h4 class="profile--item">member_id: <%= currentUser.member_id %></h4>
+  <div class="profile-view">
+    <div class="profile--item-group">
+      <img class = "profile--pic"src="/images/profile-images/<%=currentUser.avatar%>" alt="">
+      <h4 class="profile-view--title"><%= currentUser.username %></h4>
+      <h4 class="profile--item">email: <%= currentUser.email %></h4>
+      <h4 class="profile--item">member_id: <%= currentUser.member_id %></h4>
+    </div>
     <div class="profile--item-group">
       <span class="profile--item" id="user-location">Location: <%= currentUser.profile[0].location.location %></span>
       <span class="profile--item-privacy" id="user-locationPriv"><%= currentUser.profile[0].location.privacy %></span>
@@ -55,15 +57,18 @@
       <span class="profile--item-privacy" id="user-githubPriv"><%= currentUser.profile[0].github.privacy %></span>
     </div>
 
-      <button id = "edit-profile-btn" class="btn btn-sm btn-warning" type="button" name="button">Edit Profile</button>
+      <button id = "edit-profile-btn" class="btn btn-sm btn-warning profile--btn-group" type="button" name="button">Edit Profile</button>
+</div>
       <div id="edit-profile-container" class="container" style="display: none">
-        <h1>Edit Profile</h1>
+        <div class="profile-edit">
+
+        <h2 class="profile-edit--title">Edit Profile</h1>
           <form id="edit-profile-form">
 
-            <div class="form-group">
-              <div class="form-input-group">
-                  <label class = "form-label" for="locationInput">Location:</label>
-                  <input class="form-input"id="locationInput" type="text" name="location" value="<%= currentUser.profile[0].location.location%>">
+            <div class="profile-edit--group">
+              <div class="profile-edit--input-group">
+                  <label class = "profile-edit--label" for="locationInput">Location:</label>
+                  <input class="profile-edit--input"id="locationInput" type="text" name="location" value="<%= currentUser.profile[0].location.location%>">
                 </div>
                 <div class="onoffswitch">
                   <input type="checkbox" name="locationCheckbox" class="onoffswitch-checkbox" id="locationCheckbox" checked>
@@ -74,10 +79,10 @@
                 </div>
             </div>
 
-            <div class="form-group">
-              <div class="form-input-group">
-                <label class = "form-label" for="name">Email:</label>
-                <input class="form-input" type="text" name="email" value="<%= currentUser.profile[0].email.email%>">
+            <div class="profile-edit--group">
+              <div class="profile-edit--input-group">
+                <label class = "profile-edit--label" for="name">Email:</label>
+                <input class="profile-edit--input" type="text" name="email" value="<%= currentUser.profile[0].email.email%>">
               </div>
               <div class="onoffswitch">
                 <input type="checkbox" name="emailCheckbox" class="onoffswitch-checkbox" id="emailCheckbox" checked>
@@ -88,10 +93,10 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="form-input-group">
-                <label class = "form-label" for="name">Phone:</label>
-                <input class="form-input" type="text" name="phone" value="<%= currentUser.profile[0].phone.phone%>">
+            <div class="profile-edit--group">
+              <div class="profile-edit--input-group">
+                <label class = "profile-edit--label" for="name">Phone:</label>
+                <input class="profile-edit--input" type="text" name="phone" value="<%= currentUser.profile[0].phone.phone%>">
               </div>
               <div class="onoffswitch">
                 <input type="checkbox" name="phoneCheckbox" class="onoffswitch-checkbox" id="phoneCheckbox" checked>
@@ -102,10 +107,10 @@
               </div>
             </div>
 
-              <div class="form-group">
-                <div class="form-input-group">
-                  <label class = "form-label" for="facebookInput">Facebook:</label>
-                  <input class="form-input" id="facebookInput" type="text" name="facebook" value="<%= currentUser.profile[0].facebook.facebook%>">
+              <div class="profile-edit--group">
+                <div class="profile-edit--input-group">
+                  <label class = "profile-edit--label" for="facebookInput">Facebook:</label>
+                  <input class="profile-edit--input" id="facebookInput" type="text" name="facebook" value="<%= currentUser.profile[0].facebook.facebook%>">
 
                 </div>
               <div class="onoffswitch">
@@ -117,10 +122,10 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="form-input-group">
-                <label class = "form-label" for="twitterInput">Twitter:</label>
-                <input class="form-input" id="twitterInput" type="text" name="twitter" value="<%= currentUser.profile[0].twitter.twitter%>">
+            <div class="profile-edit--group">
+              <div class="profile-edit--input-group">
+                <label class = "profile-edit--label" for="twitterInput">Twitter:</label>
+                <input class="profile-edit--input" id="twitterInput" type="text" name="twitter" value="<%= currentUser.profile[0].twitter.twitter%>">
               </div>
               <div class="onoffswitch">
                 <input type="checkbox" name="twitterCheckbox" class="onoffswitch-checkbox" id="twitterCheckbox" checked>
@@ -131,10 +136,10 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="form-input-group">
-                <label class = "form-label" for="redditInput">Reddit:</label>
-                <input class="form-input" id="redditInput" type="text" name="reddit" value="<%= currentUser.profile[0].reddit.reddit%>">
+            <div class="profile-edit--group">
+              <div class="profile-edit--input-group">
+                <label class = "profile-edit--label" for="redditInput">Reddit:</label>
+                <input class="profile-edit--input" id="redditInput" type="text" name="reddit" value="<%= currentUser.profile[0].reddit.reddit%>">
               </div>
               <div class="onoffswitch">
                 <input type="checkbox" name="redditCheckbox" class="onoffswitch-checkbox" id="redditCheckbox" checked>
@@ -145,10 +150,10 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="form-input-group">
-                <label class = "form-label" for="snapchatInput">Snapchat:</label>
-                <input class="form-input" id="snapchatInput" type="text" name="snapchat" value="<%= currentUser.profile[0].snapchat.snapchat%>">
+            <div class="profile-edit--group">
+              <div class="profile-edit--input-group">
+                <label class = "profile-edit--label" for="snapchatInput">Snapchat:</label>
+                <input class="profile-edit--input" id="snapchatInput" type="text" name="snapchat" value="<%= currentUser.profile[0].snapchat.snapchat%>">
               </div>
               <div class="onoffswitch">
                 <input type="checkbox" name="snapchatCheckbox" class="onoffswitch-checkbox" id="snapchatCheckbox" checked>
@@ -159,10 +164,10 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="form-input-group">
-                <label class = "form-label" for="instagramInput">Instagram:</label>
-                <input class="form-input" id="instagramInput" type="text" name="instagram" value="<%= currentUser.profile[0].instagram.instagram%>">
+            <div class="profile-edit--group">
+              <div class="profile-edit--input-group">
+                <label class = "profile-edit--label" for="instagramInput">Instagram:</label>
+                <input class="profile-edit--input" id="instagramInput" type="text" name="instagram" value="<%= currentUser.profile[0].instagram.instagram%>">
               </div>
               <div class="onoffswitch">
                 <input type="checkbox" name="instagramCheckbox" class="onoffswitch-checkbox" id="instagramCheckbox" checked>
@@ -173,10 +178,10 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="form-input-group">
-                <label class = "form-label" for="githubInput">GitHub:</label>
-                <input class="form-input" id="githubInput" type="text" name="github" value="<%= currentUser.profile[0].github.github%>">
+            <div class="profile-edit--group">
+              <div class="profile-edit--input-group">
+                <label class = "profile-edit--label" for="githubInput">GitHub:</label>
+                <input class="profile-edit--input" id="githubInput" type="text" name="github" value="<%= currentUser.profile[0].github.github%>">
               </div>
               <div class="onoffswitch">
                 <input type="checkbox" name="githubCheckbox" class="onoffswitch-checkbox" id="githubCheckbox" checked>
@@ -186,9 +191,10 @@
                 </label>
               </div>
             </div>
-
-            <button id="cancel-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">cancel</button>
-            <button id="save-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">save</button>
+            <div class="profile-edit--btn-group">
+              <button id="cancel-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">cancel</button>
+              <button id="save-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">save</button>
+            </div>
 
           </form>
   </div>

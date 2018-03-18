@@ -5,32 +5,32 @@
 <% include ../partials/navbar %>
 <% include ../partials/slide-out-nav %>
 
-  <div class="profile">
-    <img class = "profile--pic"src="/images/profile-images/<%=user.avatar%>" alt="">
-    <h4 class="profile--item"><%= user.username %></h4>
-    <h4 class="profile--item">member_id: <%= user.member_id %></h4>
-    <h4 class="profile--item" id="user-location">Location: <%= user.profile[0].location.location %></h4>
-    <h4 class="profile--item" id="user-phone">Phone: <%= user.profile[0].phone.phone%></h4>
-    <h4 class="profile--item" id="user-email">Email: <%= user.profile[0].email.email%></h4>
-    <h4 class="profile--item" id="user-facebook">Facebook: <%= user.profile[0].facebook.facebook%></h4>
-    <h4 class="profile--item" id="user-twitter">Twitter: <%= user.profile[0].twitter.twitter%></h4>
-    <h4 class="profile--item" id="user-reddit">Reddit: <%= user.profile[0].reddit.reddit%></h4>
-    <h4 class="profile--item" id="user-reddit">Snapchat: <%= user.profile[0].snapchat.snapchat%></h4>
-    <h4 class="profile--item" id="user-reddit">Instagram: <%= user.profile[0].instagram.instagram%></h4>
-    <h4 class="profile--item" id="user-reddit">Github: <%= user.profile[0].github.github%></h4>
+  <div class="profile-view">
+    <img class = "profile--pic profile--item"src="/images/profile-images/<%=user.avatar%>" alt="">
+    <h4 class="profile--item-group profile-view--title"><%= user.username %></h4>
+    <h4 class="profile--item-group profile--item">member_id: <%= user.member_id %></h4>
+    <h4 class="profile--item-group profile--item" id="user-location">Location: <%= user.profile[0].location.location %></h4>
+    <h4 class="profile--item-group profile--item" id="user-phone">Phone: <%= user.profile[0].phone.phone%></h4>
+    <h4 class="profile--item-group profile--item" id="user-email">Email: <%= user.profile[0].email.email%></h4>
+    <h4 class="profile--item-group profile--item" id="user-facebook">Facebook: <%= user.profile[0].facebook.facebook%></h4>
+    <h4 class="profile--item-group profile--item" id="user-twitter">Twitter: <%= user.profile[0].twitter.twitter%></h4>
+    <h4 class="profile--item-group profile--item" id="user-reddit">Reddit: <%= user.profile[0].reddit.reddit%></h4>
+    <h4 class="profile--item-group profile--item" id="user-reddit">Snapchat: <%= user.profile[0].snapchat.snapchat%></h4>
+    <h4 class="profile--item-group profile--item" id="user-reddit">Instagram: <%= user.profile[0].instagram.instagram%></h4>
+    <h4 class="profile--item-group profile--item" id="user-reddit">Github: <%= user.profile[0].github.github%></h4>
 
         <!-- check if profile is a contact. FYI checkContact and checkRequestSent functions are declared at bottom of page -->
       <% if(currentUser.friends.some(checkContact)){ %>
-        <p><%= user.username %> is a contact!</p>
+        <h4 style="margin-top: 20px;" class="profile--item"><%= user.username %> is a contact!</h4>
       <% }else{ %>
         <!-- check if contact request has been sent -->
           <% if(currentUser.friend_requests_sent.some(checkRequestSent)){ %>
-            <button style="" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
-            <button style="display: none" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
+            <button style="" id = "contact-cancel-btn" class="btn btn-sm btn-warning profile--btn-group" type="button" name="button">cancel contact request</button>
+            <button style="display: none" id = "contact-request-btn" class="btn btn-sm btn-warning profile--btn-group" type="button" name="button">send contact request</button>
           <% }else{ %>
             <!-- not a contact and no contact request has been sent -->
-            <button style="display: none" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
-            <button style="" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
+            <button style="display: none" id = "contact-cancel-btn" class="btn btn-sm btn-warning profile--btn-group" type="button" name="button">cancel contact request</button>
+            <button style="" id = "contact-request-btn" class="btn btn-sm btn-warning profile--btn-group" type="button" name="button">send contact request</button>
           <% } %>
       <% } %>
 
