@@ -1,117 +1,190 @@
+<% include ../partials/header %>
 <link rel="stylesheet" href="/temp/styles/styles.css">
 </head>
-<body class = "mobile-shift">
-<% include ../partials/header %>
-<% include ../partials/navbar %>
-<% include ../partials/slide-out-nav %>
 
+<body class = "mobile-shift">
+  <header>
+  <% include ../partials/navbar %>
+  <% include ../partials/slide-out-nav %>
+  </header>
   <div class="profile">
     <img class = "profile--pic"src="/images/profile-images/<%=currentUser.avatar%>" alt="">
     <h4 class="profile--item"><%= currentUser.username %></h4>
     <h4 class="profile--item">email: <%= currentUser.email %></h4>
     <h4 class="profile--item">member_id: <%= currentUser.member_id %></h4>
-    <div class="">
+    <div class="profile--item-group">
       <span class="profile--item" id="user-location">Location: <%= currentUser.profile[0].location.location %></span>
-      <span id="user-locationPriv"><%= currentUser.profile[0].location.privacy %></span>
+      <span class="profile--item-privacy" id="user-locationPriv"><%= currentUser.profile[0].location.privacy %></span>
     </div>
-    <div class="">
+    <div class="profile--item-group">
       <span class="profile--item" id="user-phone">Phone: <%= currentUser.profile[0].phone.phone%></span>
-      <span id="user-phonePriv"><%= currentUser.profile[0].phone.privacy %></span>
+      <span class="profile--item-privacy" id="user-phonePriv"><%= currentUser.profile[0].phone.privacy %></span>
     </div>
-    <div class="">
+    <div class="profile--item-group">
       <span class="profile--item" id="user-email">Email: <%= currentUser.profile[0].email.email%></span>
-      <span id="user-emailPriv"><%= currentUser.profile[0].email.privacy %></span>
+      <span class="profile--item-privacy" id="user-emailPriv"><%= currentUser.profile[0].email.privacy %></span>
     </div>
 
-    <div class="">
+    <div class="profile--item-group">
       <span class="profile--item" id="user-facebook">Facebook: <%= currentUser.profile[0].facebook.facebook%></span>
-      <span id="user-facebookPriv"><%= currentUser.profile[0].facebook.privacy %></span>
+      <span class="profile--item-privacy" id="user-facebookPriv"><%= currentUser.profile[0].facebook.privacy %></span>
     </div>
 
-    <div class="">
+    <div class="profile--item-group">
       <span class="profile--item" id="user-twitter">Twitter: <%= currentUser.profile[0].twitter.twitter%></span>
-      <span id="user-twitterPriv"><%= currentUser.profile[0].twitter.privacy %></span>
+      <span class="profile--item-privacy" id="user-twitterPriv"><%= currentUser.profile[0].twitter.privacy %></span>
     </div>
 
-    <div class="">
+    <div class="profile--item-group">
       <span class="profile--item" id="user-reddit">Reddit: <%= currentUser.profile[0].reddit.reddit%></span>
-      <span id="user-redditPriv"><%= currentUser.profile[0].reddit.privacy %></span>
+      <span class="profile--item-privacy" id="user-redditPriv"><%= currentUser.profile[0].reddit.privacy %></span>
     </div>
 
-    <div class="">
+    <div class="profile--item-group">
       <span class="profile--item" id="user-snapchat">Snapchat: <%= currentUser.profile[0].snapchat.snapchat%></span>
-      <span id="user-snapchatPriv"><%= currentUser.profile[0].snapchat.privacy %></span>
+      <span class="profile--item-privacy" id="user-snapchatPriv"><%= currentUser.profile[0].snapchat.privacy %></span>
     </div>
 
-    <div class="">
+    <div class="profile--item-group">
       <span class="profile--item" id="user-instagram">Instagram: <%= currentUser.profile[0].instagram.instagram%></span>
-      <span id="user-instagramPriv"><%= currentUser.profile[0].instagram.privacy %></span>
+      <span class="profile--item-privacy" id="user-instagramPriv"><%= currentUser.profile[0].instagram.privacy %></span>
     </div>
 
-    <div class="">
+    <div class="profile--item-group">
       <span class="profile--item" id="user-github">Github: <%= currentUser.profile[0].github.github%></span>
-      <span id="user-githubPriv"><%= currentUser.profile[0].github.privacy %></span>
+      <span class="profile--item-privacy" id="user-githubPriv"><%= currentUser.profile[0].github.privacy %></span>
     </div>
 
       <button id = "edit-profile-btn" class="btn btn-sm btn-warning" type="button" name="button">Edit Profile</button>
       <div id="edit-profile-container" class="container" style="display: none">
         <h1>Edit Profile</h1>
           <form id="edit-profile-form">
+
             <div class="form-group">
-                <label for="locationInput">Location:</label>
-                <input id="locationInput" type="text" name="location" value="<%= currentUser.profile[0].location.location%>">
-                <label for="locationCheckbox">Private:</label>
-                <input id="locationCheckbox"type="checkbox" name="locationCheckbox"  <%=currentUser.profile[0].location.privacy == "private" ? "checked" : "" %>>
+              <div class="form-input-group">
+                  <label class = "form-label" for="locationInput">Location:</label>
+                  <input class="form-input"id="locationInput" type="text" name="location" value="<%= currentUser.profile[0].location.location%>">
+                </div>
+                <div class="onoffswitch">
+                  <input type="checkbox" name="locationCheckbox" class="onoffswitch-checkbox" id="locationCheckbox" checked>
+                  <label class="onoffswitch-label" for="locationCheckbox">
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                  </label>
+                </div>
             </div>
+
             <div class="form-group">
-              <label for="name">Email:</label>
-              <input type="text" name="email" value="<%= currentUser.profile[0].email.email%>">
-              <label for="emailCheckbox">Private:</label>
-              <input id="emailCheckbox"type="checkbox" name="emailCheckbox" <%=currentUser.profile[0].email.privacy == "private" ? "checked" : "" %>>
+              <div class="form-input-group">
+                <label class = "form-label" for="name">Email:</label>
+                <input class="form-input" type="text" name="email" value="<%= currentUser.profile[0].email.email%>">
+              </div>
+              <div class="onoffswitch">
+                <input type="checkbox" name="emailCheckbox" class="onoffswitch-checkbox" id="emailCheckbox" checked>
+                <label class="onoffswitch-label" for="emailCheckbox">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
             </div>
+
             <div class="form-group">
-              <label for="name">Phone:</label>
-              <input type="text" name="phone" value="<%= currentUser.profile[0].phone.phone%>">
-              <label for="phoneCheckbox">Private:</label>
-              <input id="phoneCheckbox"type="checkbox" name="phoneCheckbox" <%=currentUser.profile[0].phone.privacy == "private" ? "checked" : "" %>>
+              <div class="form-input-group">
+                <label class = "form-label" for="name">Phone:</label>
+                <input class="form-input" type="text" name="phone" value="<%= currentUser.profile[0].phone.phone%>">
+              </div>
+              <div class="onoffswitch">
+                <input type="checkbox" name="phoneCheckbox" class="onoffswitch-checkbox" id="phoneCheckbox" checked>
+                <label class="onoffswitch-label" for="phoneCheckbox">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
             </div>
+
               <div class="form-group">
-              <label for="facebookInput">Facebook:</label>
-              <input id="facebookInput" type="text" name="facebook" value="<%= currentUser.profile[0].facebook.facebook%>">
-              <label for="facebookCheckbox">Private:</label>
-              <input id="facebookCheckbox"type="checkbox" name="facebookCheckbox" <%=currentUser.profile[0].facebook.privacy == "private" ? "checked" : "" %>>
-            </div>
-            <div class="form-group">
-              <label for="twitterInput">Twitter:</label>
-              <input id="twitterInput" type="text" name="twitter" value="<%= currentUser.profile[0].twitter.twitter%>">
-              <label for="twitterCheckbox">Private:</label>
-              <input id="twitterCheckbox"type="checkbox" name="twitterCheckbox" <%=currentUser.profile[0].twitter.privacy == "private" ? "checked" : "" %>>
+                <div class="form-input-group">
+                  <label class = "form-label" for="facebookInput">Facebook:</label>
+                  <input class="form-input" id="facebookInput" type="text" name="facebook" value="<%= currentUser.profile[0].facebook.facebook%>">
 
+                </div>
+              <div class="onoffswitch">
+                <input type="checkbox" name="facebookCheckbox" class="onoffswitch-checkbox" id="facebookCheckbox" checked>
+                <label class="onoffswitch-label" for="facebookCheckbox">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="redditInput">Reddit:</label>
-              <input id="redditInput" type="text" name="reddit" value="<%= currentUser.profile[0].reddit.reddit%>">
-              <label for="redditCheckbox">Private:</label>
-              <input id="redditCheckbox"type="checkbox" name="redditCheckbox" <%=currentUser.profile[0].reddit.privacy == "private" ? "checked" : "" %>>
-            </div>
-            <div class="form-group">
-              <label for="snapchatInput">Snapchat:</label>
-              <input id="snapchatInput" type="text" name="snapchat" value="<%= currentUser.profile[0].snapchat.snapchat%>">
-              <label for="snapchatCheckbox">Private:</label>
-              <input id="snapchatCheckbox"type="checkbox" name="snapchatCheckbox" <%=currentUser.profile[0].snapchat.privacy == "private" ? "checked" : "" %>>
-            </div>
-            <div class="form-group">
-              <label for="instagramInput">Instagram:</label>
-              <input id="instagramInput" type="text" name="instagram" value="<%= currentUser.profile[0].instagram.instagram%>">
-              <label for="instagramCheckbox">Private:</label>
-              <input id="instagramCheckbox"type="checkbox" name="instagramCheckbox" <%=currentUser.profile[0].instagram.privacy == "private" ? "checked" : "" %>>
-            </div>
-            <div class="form-group">
-              <label for="githubInput">GitHub:</label>
-              <input id="githubInput" type="text" name="github" value="<%= currentUser.profile[0].github.github%>">
-              <label for="githubCheckbox">Private:</label>
-              <input id="githubCheckbox"type="checkbox" name="githubCheckbox" <%=currentUser.profile[0].github.privacy == "private" ? "checked" : "" %>>
 
+            <div class="form-group">
+              <div class="form-input-group">
+                <label class = "form-label" for="twitterInput">Twitter:</label>
+                <input class="form-input" id="twitterInput" type="text" name="twitter" value="<%= currentUser.profile[0].twitter.twitter%>">
+              </div>
+              <div class="onoffswitch">
+                <input type="checkbox" name="twitterCheckbox" class="onoffswitch-checkbox" id="twitterCheckbox" checked>
+                <label class="onoffswitch-label" for="twitterCheckbox">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-input-group">
+                <label class = "form-label" for="redditInput">Reddit:</label>
+                <input class="form-input" id="redditInput" type="text" name="reddit" value="<%= currentUser.profile[0].reddit.reddit%>">
+              </div>
+              <div class="onoffswitch">
+                <input type="checkbox" name="redditCheckbox" class="onoffswitch-checkbox" id="redditCheckbox" checked>
+                <label class="onoffswitch-label" for="redditCheckbox">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-input-group">
+                <label class = "form-label" for="snapchatInput">Snapchat:</label>
+                <input class="form-input" id="snapchatInput" type="text" name="snapchat" value="<%= currentUser.profile[0].snapchat.snapchat%>">
+              </div>
+              <div class="onoffswitch">
+                <input type="checkbox" name="snapchatCheckbox" class="onoffswitch-checkbox" id="snapchatCheckbox" checked>
+                <label class="onoffswitch-label" for="snapchatCheckbox">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-input-group">
+                <label class = "form-label" for="instagramInput">Instagram:</label>
+                <input class="form-input" id="instagramInput" type="text" name="instagram" value="<%= currentUser.profile[0].instagram.instagram%>">
+              </div>
+              <div class="onoffswitch">
+                <input type="checkbox" name="instagramCheckbox" class="onoffswitch-checkbox" id="instagramCheckbox" checked>
+                <label class="onoffswitch-label" for="instagramCheckbox">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-input-group">
+                <label class = "form-label" for="githubInput">GitHub:</label>
+                <input class="form-input" id="githubInput" type="text" name="github" value="<%= currentUser.profile[0].github.github%>">
+              </div>
+              <div class="onoffswitch">
+                <input type="checkbox" name="githubCheckbox" class="onoffswitch-checkbox" id="githubCheckbox" checked>
+                <label class="onoffswitch-label" for="githubCheckbox">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
             </div>
 
             <button id="cancel-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">cancel</button>
@@ -123,6 +196,7 @@
 </body>
 
 <script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/functions.js"></script>
 <script type="text/javascript">
 
   $("#save-edit-profile-btn").on("click", function(){

@@ -1,13 +1,22 @@
 .profile {
   margin-top: 8rem;
-  margin-left: 20px
+  margin-left: 50px
 
 }
 
+.profile--item-group {
+  margin-bottom: 5px;
+}
 .profile--item {
   font: normal 1.4rem "Open Sans", sans-serif;
-  margin-bottom: 8px;
+  opacity: .85;
+  margin-bottom: 5px;
   color: #2f2f2f;
+}
+
+.profile--item-privacy {
+  opacity: .5;
+  margin-left: 10px;
 }
 
 @media screen and (max-width: 800px){

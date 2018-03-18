@@ -21,7 +21,7 @@ a{
 }
 
 .fixed-navbar.nav-fix {
-  background-color: rgba(13, 7, 25, 0.9);
+  background-color: rgba(0, 160, 192, 0.85);
   height: 80px;
 }
 
@@ -39,7 +39,7 @@ a{
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 30px;
-  line-height: 120px;
+  line-height: 80px;
   transition: all .2s ease-in-out;
 }
 
@@ -53,12 +53,14 @@ a{
 
 .navbar-lockup .logo-text {
   font-size: 2rem;
-  color: green;
+  color: blue;
+  opacity: .9;
 }
 
 .navbar-lockup .logo-text a{
   font-size: 2rem;
-  color: green;
+  color: blue;
+  opacity: .9;
 }
 
 .navbar-lockup .logo img {
@@ -82,7 +84,8 @@ a{
 }
 
 .navbar-lockup .nav li a {
-  color: green;
+  color: blue;
+  opacity: .9;
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: .8px;
@@ -90,11 +93,10 @@ a{
 }
 
 .navbar-lockup .nav li a:hover {
-  color: #c8e474;
+  /*color: #c8e474;*/
+  opacity: .5;
   text-decoration: none;
 }
-
-
 
 .slide-out-nav {
   position: fixed;
@@ -102,7 +104,7 @@ a{
   right: -180px;
   bottom: 0;
   width: 180px;
-  background-color: #0d1119;
+background-color: rgba(0, 160, 192, 0.85);
   overflow: hidden;
   z-index: 11;
   transition: all .2s ease-in-out;
@@ -170,7 +172,8 @@ a{
   width: 100%;
   height: 2px;
   margin-bottom: 8px;
-  background-color: green;
+  background-color: blue;
+  opacity: .9;
 }
 
 @media (max-width: 1024px) {

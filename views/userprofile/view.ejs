@@ -8,7 +8,6 @@
   <div class="profile">
     <img class = "profile--pic"src="/images/profile-images/<%=user.avatar%>" alt="">
     <h4 class="profile--item"><%= user.username %></h4>
-    <h4 class="profile--item">email: <%= user.email %></h4>
     <h4 class="profile--item">member_id: <%= user.member_id %></h4>
     <h4 class="profile--item" id="user-location">Location: <%= user.profile[0].location.location %></h4>
     <h4 class="profile--item" id="user-phone">Phone: <%= user.profile[0].phone.phone%></h4>
@@ -20,63 +19,22 @@
     <h4 class="profile--item" id="user-reddit">Instagram: <%= user.profile[0].instagram.instagram%></h4>
     <h4 class="profile--item" id="user-reddit">Github: <%= user.profile[0].github.github%></h4>
 
-    <% if(currentUser && user._id.equals(currentUser._id)){ %>
-      <button id = "edit-profile-btn" class="btn btn-sm btn-warning" type="button" name="button">Edit Profile</button>
-      <div id="edit-profile-container" class="container" style="display: none">
-
-        <div class="container">
-          <div class="row">
-              <h1>Edit Profile</h1>
-                <form id="edit-profile-form">
-                  <div class="form-group">
-                      <label for="name">Location:</label>
-                      <input type="text" name="location" value="<%= user.profile[0].location.location%>">
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Email:</label>
-                    <input type="text" name="email" value="<%= user.profile[0].email%>">
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Phone:</label>
-                    <input type="text" name="phone" value="<%= user.profile[0].phone%>">
-                  </div>
-                    <div class="form-group">
-                    <label for="name">Facebook:</label>
-                    <input type="text" name="facebook" value="<%= user.profile[0].facebook.facebook%>">
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Twitter:</label>
-                    <input type="text" name="twitter" value="<%= user.profile[0].twitter%>">
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Reddit:</label>
-                    <input type="text" name="reddit" value="<%= user.profile[0].reddit%>">
-                  </div>
-                  <button id="cancel-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">cancel</button>
-                  <button id="save-edit-profile-btn" class="btn btn-lg btn-warning" type="button" name="button">save</button>
-
-                </form>
-            </div>
-        </div>
-    <% } else { %>
-        <!-- check if profile is a contact FYI checkContact and checkRequestSent functions are declared at bottom of page -->
-        <% if(currentUser.friends.some(checkContact)){ %>
-          <p>its your friend!!!</p>
-        <% }else{ %>
-          <!-- check if contact request has been sent -->
-            <% if(currentUser.friend_requests_sent.some(checkRequestSent)){ %>
-              <button style="" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
-              <button style="display: none" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
-            <% }else{ %>
-              <!-- not a contact and no contact request has been sent -->
-              <button style="display: none" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
-              <button style="" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
-            <% } %>
-        <% } %>
-    <% } %>
+        <!-- check if profile is a contact. FYI checkContact and checkRequestSent functions are declared at bottom of page -->
+      <% if(currentUser.friends.some(checkContact)){ %>
+        <p><%= user.username %> is a contact!</p>
+      <% }else{ %>
+        <!-- check if contact request has been sent -->
+          <% if(currentUser.friend_requests_sent.some(checkRequestSent)){ %>
+            <button style="" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
+            <button style="display: none" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
+          <% }else{ %>
+            <!-- not a contact and no contact request has been sent -->
+            <button style="display: none" id = "contact-cancel-btn" class="btn btn-sm btn-warning" type="button" name="button">cancel contact request</button>
+            <button style="" id = "contact-request-btn" class="btn btn-sm btn-warning" type="button" name="button">send contact request</button>
+          <% } %>
+      <% } %>
 
   </div>
-</div>
 </body>
 
 <script src="../js/jquery-1.11.1.min.js"></script>

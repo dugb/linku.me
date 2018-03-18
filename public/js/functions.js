@@ -8,7 +8,7 @@ $(window).scroll(function(){
 
 	var wScroll = $(this).scrollTop();
 
-	if (wScroll > ($(this).height() / 3)) {
+	if (wScroll > ($(this).height() / 6)) {
 
 		$('.fixed-navbar, .navbar-lockup').addClass('nav-fix');
 
