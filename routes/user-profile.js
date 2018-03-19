@@ -81,7 +81,7 @@ router.put('/edit/:id', middleware.checkProfileOwnership, function(req, res){
     user.profile[0].instagram.instagram = req.body.instagram;
     user.profile[0].instagram.privacy = req.body.instagramCheckbox == undefined ? "public" : "private";
     user.profile[0].github.github = req.body.github;
-    user.profile[0].github.privacy = req.body.emailCheckbox == undefined ? "public" : "private";
+    user.profile[0].github.privacy = req.body.githubCheckbox == undefined ? "public" : "private";
 
     console.log("USER:", user);
     user.save(function(err){

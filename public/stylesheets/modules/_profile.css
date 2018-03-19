@@ -1,14 +1,18 @@
 .profile-view {
-  margin-top: 6rem;
+  margin-top: 4rem;
   margin-left: 0px;
 
   &--title{
-    font: normal 1.6rem "Open Sans", sans-serif;
+    font: normal 1.4rem "Open Sans", sans-serif;
     opacity: .85;
     margin-bottom: 5px;
     color: #2f2f2f;
     padding-left: 10px;
     letter-spacing: .08rem;
+
+    @mixin atSmall {
+      font: normal 1.8rem "Open Sans", sans-serif;
+    }
   }
 }
 
@@ -114,8 +118,18 @@
 
 .profile {
 
+  &--header{
+    padding-top: 2px;
+    padding-left: 10px;
+
+    @mixin atSmall{
+      padding-top: 10px;
+      padding-left: 10px;
+    }
+  }
+
   &--item {
-    font: normal .65rem "Open Sans", sans-serif;
+    font: normal .85rem "Open Sans", sans-serif;
     opacity: .85;
     margin-bottom: 5px;
     color: #2f2f2f;
@@ -141,13 +155,14 @@
   &--item-privacy {
     opacity: .5;
     margin-left: 4px;
-    font-size: .65rem;
+    font-size: .85rem;
 
     @mixin atSmall{
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
   }
+
 
   &--pic {
     margin-bottom: 2px;

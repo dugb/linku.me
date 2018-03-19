@@ -8,7 +8,7 @@
   <% include ../partials/slide-out-nav %>
   </header>
   <div class="profile-view">
-    <div class="profile--item-group">
+    <div class="profile--header">
       <img class = "profile--pic"src="/images/profile-images/<%=currentUser.avatar%>" alt="">
       <h4 class="profile-view--title"><%= currentUser.username %></h4>
       <h4 class="profile--item">email: <%= currentUser.email %></h4>
@@ -228,11 +228,11 @@
         $("#user-twitterPriv").html(updated_user.profile[0].twitter.privacy);
         $("#user-reddit").html("Reddit: " + updated_user.profile[0].reddit.reddit);
         $("#user-redditPriv").html(updated_user.profile[0].reddit.privacy);
-        $("#user-snapchat").html("Reddit: " + updated_user.profile[0].snapchat.snapchat);
+        $("#user-snapchat").html("Snapchat: " + updated_user.profile[0].snapchat.snapchat);
         $("#user-snapchatPriv").html(updated_user.profile[0].snapchat.privacy);
-        $("#user-instagram").html("Reddit: " + updated_user.profile[0].instagram.instagram);
+        $("#user-instagram").html("Instagram: " + updated_user.profile[0].instagram.instagram);
         $("#user-instagramPriv").html(updated_user.profile[0].instagram.privacy);
-        $("#user-github").html("Reddit: " + updated_user.profile[0].github.github);
+        $("#user-github").html("Github: " + updated_user.profile[0].github.github);
         $("#user-githubPriv").html(updated_user.profile[0].github.privacy);
       }
     })
