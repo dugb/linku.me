@@ -1,9 +1,10 @@
-<% include ./partials/header-no-nav %>
-<div class="background-image" style="background-image: url(images/landing002.jpg);"></div>
-<section>
+<% include ./partials/header %>
+<body>
+<% include ./partials/alerts %>
+<section class="landing">
+<div class="landing--background-image" style="background-image: url(images/landing002.jpg);"></div>
 
-
-      <h1 class = "title"><a href="/">linkU.Me</a></h1>
+      <h1 class = "landing--title"><a class = "landing--title-link"href="/">linkU.Me</a></h1>
       <!-- <h2 class = "subtitle">Register</h1> -->
       <form action="/register" method="post">
         <div class="">
@@ -15,8 +16,8 @@
         <div class="">
           <input class="form-input" type="password" name="password" placeholder="password" required>
         </div>
-        <div class="">
-          <button class="btn btn-large btn-primary btn-block">Sign Up</button>
+        <div class="landing--btn-block">
+          <button class="landing--btn">Sign Up</button>
         </div>
       </form>
 </section>

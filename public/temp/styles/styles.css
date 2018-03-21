@@ -1072,3 +1072,131 @@ background-color: rgba(0, 160, 192, 0.85);
 .alert--green {
   background-color: rgba(141, 224, 170, 0.5);
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.landing {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  position: relative;
+  -ms-flex-pack: center;
+      justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+  color: #2f2f2f;
+
+}
+
+.landing--btn {
+  text-decoration: none;
+  opacity: 0.75;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: #3f51b5;
+  opacity: 0.75;
+  padding: 10px 16px;
+  border-radius: 16px;
+  border: none;
+}
+
+@media (min-width: 800px) {
+
+  .landing--btn {
+    font-size: 1.5rem;
+  }
+}
+
+.landing--btn:hover {
+  opacity: 1;
+}
+
+.landing--background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  z-index: -1;
+  background-color: #80a3db;
+  opacity: .75;
+}
+
+.landing--title {
+  font: bold 4rem "Open Sans", sans-serif;
+  margin-bottom: 20px;
+  color: #4db584;
+}
+
+@media (min-width: 800px) {
+
+  .landing--title {
+    font: bold 8rem "Open Sans", sans-serif;
+    color: #4db584;
+  }
+}
+
+.landing--title-link {
+  text-decoration: none;
+  color: #4db584;
+}
+
+.landing--title-link:hover{
+  opacity: 0.9;
+}
+
+.landing--subtitle {
+  font: bold 1.2rem "Open Sans", sans-serif;
+  margin-bottom: 30px;
+  color: #2f2f2f;
+}
+
+@media (min-width: 800px) {
+
+  .landing--subtitle {
+    font: bold 1.4rem "Open Sans", sans-serif;
+    color: #2f2f2f;
+  }
+}
+
+.landing--caption {
+  font: bold 1.2rem "Open Sans", sans-serif;
+  margin-bottom: 40px;
+  color: #2f2f2f;
+}
+
+@media (min-width: 800px) {
+
+  .landing--caption {
+    font: bold 2.2rem "Open Sans", sans-serif;
+    color: #2f2f2f;
+  }
+}
+
+.landing--content-area {
+  opacity: 0;
+  margin-top: 100px;
+  animation: 1s slidefade 1s forwards;
+}
+
+.landing--btn-block{
+  margin-top: 15px;
+}
+
+@keyframes slidefade {
+  100% {
+    opacity: 1;
+    margin: 0;
+  }
+}

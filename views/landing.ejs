@@ -1,41 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-      <link rel="stylesheet" href="stylesheets/landing.css">
-        <title>linkU.Me</title>
-
-</head>
+<% include ./partials/header %>
 <body>
   <% include ./partials/alerts %>
 
-  <section class="hero">
-    <div class="hero--background-image" style="background-image: url(images/landing002.jpg);"></div>
-    <div class="hero--content-area">
-      <h1 class = "hero--title">linkU.Me!</h1>
-      <h3 class = "hero--caption">share your social media links.<br>stay up to date with your contacts social media links.</h3>
+  <section class="landing">
+    <div class="landing--background-image" style="background-image: url(images/landing002.jpg);"></div>
+    <div class="landing--content-area">
+      <h1 class = "landing--title">linkU.Me!</h1>
+      <h3 class = "landing--caption">share your social media links.<br>stay up to date with your contacts social media links.</h3>
         <% if(!currentUser){ %>
-            <div class="hero--subtitle">
-              <h2 class = "hero--subtitle">Get Started Now!  It's free!</h2>
-              <a href="/register" class="btn">Sign Up</a>
+            <div class="landing--subtitle">
+              <h2 class = "landing--subtitle">Get Started Now!  It's free!</h2>
+              <a href="/register" class="landing--btn">Sign Up</a>
             </div>
-            <div class="hero--subtitle">
-              <h2 class = "hero--subtitle">Already have an account?</h2>
-              <a href="/login" class="btn">Login</a>
+            <div class="landing--subtitle">
+              <h2 class = "landing--subtitle">Already have an account?</h2>
+              <a href="/login" class="landing--btn">Login</a>
             </div>
         <% }else{ %>
-            <div class = "hero--subtitle">
+            <div class = "landing--subtitle">
               <h4>Hello, <%= currentUser.username %>!</h4>
             </div>
-             <div class="hero--subtitle">
-               <a href="/userhome" class="btn"> Home </a>
+             <div class="landing--subtitle">
+               <a href="/userhome" class="landing--btn"> Home </a>
              </div>
-             <div class="hero--subtitle">
-               <a href="/logout" class="btn">Log out</a>
+             <div class="landing--subtitle">
+               <a href="/logout" class="landing--btn">Log out</a>
              </div>
         <% } %>
     </div>

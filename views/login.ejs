@@ -1,8 +1,9 @@
-<% include ./partials/header-no-nav %>
+<% include ./partials/header %>
+<body>
 <% include ./partials/alerts %>
-<section class = "login">
-    <div class="background-image" style="background-image: url(images/landing002.jpg);"></div>
-    <h1 class = "title"><a href="/">linkU.Me</a></h1>
+<section class = "landing">
+    <div class="landing--background-image" style="background-image: url(images/landing002.jpg);"></div>
+    <h1 class = "landing--title"><a class = "landing--title-link"href="/">linkU.Me</a></h1>
     <form action="/login" method="post">
       <div class="">
         <input class="form-input" type="text" name="username" placeholder="username" required autofocus>
@@ -10,8 +11,8 @@
       <div class="">
         <input class="form-input" type="password" name="password" placeholder="password" required>
       </div>
-      <div class="">
-        <button class="btn">Login</button>
+      <div class="landing--btn-block">
+        <button class="landing--btn">Login</button>
       </div>
     </form>
 
