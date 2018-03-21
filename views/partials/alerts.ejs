@@ -1,0 +1,12 @@
+<div class = "alerts">
+  <% if(error && error.length > 0){ %>
+    <div class="alert alert--red" role="alert">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success && success.length > 0){ %>
+    <div class="alert alert--green" role="alert">
+      <%= success %>
+    </div>
+  <% } %>
+</div>

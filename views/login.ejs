@@ -1,19 +1,18 @@
 <% include ./partials/header-no-nav %>
+<% include ./partials/alerts %>
 <section class = "login">
     <div class="background-image" style="background-image: url(images/landing002.jpg);"></div>
     <h1 class = "title"><a href="/">linkU.Me</a></h1>
-    <!-- <h2 class = "subtitle">Login</h1> -->
     <form action="/login" method="post">
-    <div class="">
-      <input class="form-input" type="text" name="username" placeholder="username" required autofocus>
-    </div>
-    <div class="">
-      <input class="form-input" type="password" name="password" placeholder="password" required>
-    </div>
-    <div class="">
+      <div class="">
+        <input class="form-input" type="text" name="username" placeholder="username" required autofocus>
+      </div>
+      <div class="">
+        <input class="form-input" type="password" name="password" placeholder="password" required>
+      </div>
+      <div class="">
         <button class="btn">Login</button>
-    </div>
-
+      </div>
     </form>
 
 </section>

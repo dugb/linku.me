@@ -1,0 +1,17 @@
+
+.alert {
+  width: 100%;
+  position: absolute;
+  font-size: 1.25rem;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  text-align: center;
+  color: #fff;
+}
+.alert--red {
+  background-color: rgba(254,153,164,0.5);
+}
+
+.alert--green {
+  background-color: rgba(141, 224, 170, 0.5);
+}

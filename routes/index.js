@@ -21,7 +21,7 @@ router.post('/register', function(req, res){
       passport.authenticate('local')(req, res, function(){
 
         //redirect to home(rooms index)
-        req.flash('success', "Welcome " + user.username);
+        // req.flash('success', "Welcome " + user.username);
         res.redirect('userhome');
       });
   });
@@ -50,7 +50,7 @@ router.get('/userhome', middleware.isLoggedIn, function(req, res){
 // logout route
 router.get('/logout', function(req, res){
   req.logout();
-  req.flash('success', "Logged you out!")
+  req.flash('success', "Logged out!")
   res.redirect('/');
 })
 

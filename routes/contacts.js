@@ -48,6 +48,7 @@ router.post('/accept-contact-request', middleware.isLoggedIn, function(req, res)
             }else{
                 var newContact = {"member_id": newFriend.member_id, "friend_name": newFriend.username, "id": newFriend._id};
                 currentUser.update({$push: {"friends": newContact}, $pull: {"friend_requests_recvd": {id: newFriend._id}}}, function(err, results2){
+                req.flash('success', "Welcome " + currentUser.username);
                 res.json(newContact);
 
               })

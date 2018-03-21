@@ -3,9 +3,9 @@
 @import "base/_mixins";
 @import "base/_global";
 @import "modules/_btn";
-@import "modules/_hero";
 @import "modules/_contacts";
 @import "modules/_navbar";
 @import "modules/_profile";
 @import "modules/_form";
 @import "modules/_on-off-switch";
+@import "modules/_alerts";
