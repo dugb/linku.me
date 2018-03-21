@@ -1,10 +1,3 @@
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .landing {
   display: flex;
   flex-direction: column;
@@ -55,13 +48,10 @@
     margin-bottom: 20px;
     color: #4db584;
 
-
     @mixin atMedium{
         font: bold 8rem "Open Sans", sans-serif;
         color: #4db584;
     }
-
-
   }
 
   &--title-link {

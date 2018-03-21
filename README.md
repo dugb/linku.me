@@ -11,9 +11,11 @@ users can edit their profile.
 users can search for other users.
 users can send contact requests to other users.
 users can accept contact requests from other users, adding them to their contacts list.
-users can remove other users from their list of contacts
-
-Features on todo list:
+users can remove other users from their list of contacts.
 users profile info will be default private.
 users can select which info is public.
 users will need to send and have accepted a contact request to view private info.
+
+Features on todo list:
+users can upload their own profile pic.
+user2user messaging.
