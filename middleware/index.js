@@ -1,29 +1,28 @@
-var User = require('../models/user');
-var middlewareObj = {};
+const User = require('../models/user');
 
-middlewareObj.isLoggedIn = function(req, res, next){
-  if (req.isAuthenticated()){
+const middlewareObj = {};
+
+middlewareObj.isLoggedIn = function (req, res, next) {
+  if (req.isAuthenticated()) {
     return next();
   }
-  req.flash('error', "You need to be logged in to do that.");
+  req.flash('error', 'You need to be logged in to do that.');
   res.redirect('/login');
 };
 
-
-
-middlewareObj.checkProfileOwnership = function(req, res, next) {
+middlewareObj.checkProfileOwnership = function (req, res, next) {
       //is user logged in?
-      if(req.isAuthenticated()){
+      if (req.isAuthenticated()) {
         console.log('req.params.id: ', req.params.id);
 
-        User.findOne({"member_id": req.params.id}, function(err, foundUser){
+        User.findOne({ 'member_id': req.params.id }, function (err, foundUser) {
         // User.findById(req.params.id, function(err, foundUser){
-          if(err){
+          if (err) {
             req.flash('error', 'User Profile not found');
             res.redirect('back');
           } else {
             //does user own the profile?
-            if(foundUser._id.equals(req.user._id)){
+            if (foundUser._id.equals(req.user._id)) {
               next();
             } else {
               req.flash('error', 'You do not have permission to do that');
@@ -35,7 +34,7 @@ middlewareObj.checkProfileOwnership = function(req, res, next) {
         req.flash('error', 'You need to be logged in to do that');
         res.redirect('back');
       }
-    }
+    };
 
 
-module.exports=middlewareObj;
+module.exports = middlewareObj;
