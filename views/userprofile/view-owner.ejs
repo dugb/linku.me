@@ -69,7 +69,7 @@
                   <input class="profile-edit--input"id="locationInput" type="text" name="location" value="<%= currentUser.profile[0].location.location%>">
                 </div>
                 <div class="onoffswitch">
-                  <input type="checkbox" name="locationCheckbox" class="onoffswitch-checkbox" id="locationCheckbox" checked>
+                  <input type="checkbox" name="locationCheckbox" class="onoffswitch-checkbox" id="locationCheckbox" <%= currentUser.profile[0].location.privacy === "private" ? "checked" : ""%> >
                   <label class="onoffswitch-label" for="locationCheckbox">
                     <span class="onoffswitch-inner"></span>
                     <span class="onoffswitch-switch"></span>
@@ -83,7 +83,7 @@
                 <input class="profile-edit--input" type="text" name="email" value="<%= currentUser.profile[0].email.email%>">
               </div>
               <div class="onoffswitch">
-                <input type="checkbox" name="emailCheckbox" class="onoffswitch-checkbox" id="emailCheckbox" checked>
+                <input type="checkbox" name="emailCheckbox" class="onoffswitch-checkbox" id="emailCheckbox" <%= currentUser.profile[0].location.email === "private" ? "checked" : ""%>>
                 <label class="onoffswitch-label" for="emailCheckbox">
                   <span class="onoffswitch-inner"></span>
                   <span class="onoffswitch-switch"></span>
@@ -97,7 +97,7 @@
                 <input class="profile-edit--input" type="text" name="phone" value="<%= currentUser.profile[0].phone.phone%>">
               </div>
               <div class="onoffswitch">
-                <input type="checkbox" name="phoneCheckbox" class="onoffswitch-checkbox" id="phoneCheckbox" checked>
+                <input type="checkbox" name="phoneCheckbox" class="onoffswitch-checkbox" id="phoneCheckbox" <%= currentUser.profile[0].phone.privacy === "private" ? "checked" : ""%>>
                 <label class="onoffswitch-label" for="phoneCheckbox">
                   <span class="onoffswitch-inner"></span>
                   <span class="onoffswitch-switch"></span>
@@ -112,7 +112,7 @@
 
                 </div>
               <div class="onoffswitch">
-                <input type="checkbox" name="facebookCheckbox" class="onoffswitch-checkbox" id="facebookCheckbox" checked>
+                <input type="checkbox" name="facebookCheckbox" class="onoffswitch-checkbox" id="facebookCheckbox" <%= currentUser.profile[0].facebook.privacy === "private" ? "checked" : ""%>>
                 <label class="onoffswitch-label" for="facebookCheckbox">
                   <span class="onoffswitch-inner"></span>
                   <span class="onoffswitch-switch"></span>
@@ -126,7 +126,7 @@
                 <input class="profile-edit--input" id="twitterInput" type="text" name="twitter" value="<%= currentUser.profile[0].twitter.twitter%>">
               </div>
               <div class="onoffswitch">
-                <input type="checkbox" name="twitterCheckbox" class="onoffswitch-checkbox" id="twitterCheckbox" checked>
+                <input type="checkbox" name="twitterCheckbox" class="onoffswitch-checkbox" id="twitterCheckbox" <%= currentUser.profile[0].twitter.privacy === "private" ? "checked" : ""%>>
                 <label class="onoffswitch-label" for="twitterCheckbox">
                   <span class="onoffswitch-inner"></span>
                   <span class="onoffswitch-switch"></span>
@@ -140,7 +140,7 @@
                 <input class="profile-edit--input" id="redditInput" type="text" name="reddit" value="<%= currentUser.profile[0].reddit.reddit%>">
               </div>
               <div class="onoffswitch">
-                <input type="checkbox" name="redditCheckbox" class="onoffswitch-checkbox" id="redditCheckbox" checked>
+                <input type="checkbox" name="redditCheckbox" class="onoffswitch-checkbox" id="redditCheckbox" <%= currentUser.profile[0].reddit.privacy === "private" ? "checked" : ""%>>
                 <label class="onoffswitch-label" for="redditCheckbox">
                   <span class="onoffswitch-inner"></span>
                   <span class="onoffswitch-switch"></span>
@@ -154,7 +154,7 @@
                 <input class="profile-edit--input" id="snapchatInput" type="text" name="snapchat" value="<%= currentUser.profile[0].snapchat.snapchat%>">
               </div>
               <div class="onoffswitch">
-                <input type="checkbox" name="snapchatCheckbox" class="onoffswitch-checkbox" id="snapchatCheckbox" checked>
+                <input type="checkbox" name="snapchatCheckbox" class="onoffswitch-checkbox" id="snapchatCheckbox" <%= currentUser.profile[0].snapchat.privacy === "private" ? "checked" : ""%> >
                 <label class="onoffswitch-label" for="snapchatCheckbox">
                   <span class="onoffswitch-inner"></span>
                   <span class="onoffswitch-switch"></span>
@@ -168,7 +168,7 @@
                 <input class="profile-edit--input" id="instagramInput" type="text" name="instagram" value="<%= currentUser.profile[0].instagram.instagram%>">
               </div>
               <div class="onoffswitch">
-                <input type="checkbox" name="instagramCheckbox" class="onoffswitch-checkbox" id="instagramCheckbox" checked>
+                <input type="checkbox" name="instagramCheckbox" class="onoffswitch-checkbox" id="instagramCheckbox" <%= currentUser.profile[0].instagram.privacy === "private" ? "checked" : ""%> >
                 <label class="onoffswitch-label" for="instagramCheckbox">
                   <span class="onoffswitch-inner"></span>
                   <span class="onoffswitch-switch"></span>
@@ -182,7 +182,7 @@
                 <input class="profile-edit--input" id="githubInput" type="text" name="github" value="<%= currentUser.profile[0].github.github%>">
               </div>
               <div class="onoffswitch">
-                <input type="checkbox" name="githubCheckbox" class="onoffswitch-checkbox" id="githubCheckbox" checked>
+                <input type="checkbox" name="githubCheckbox" class="onoffswitch-checkbox" id="githubCheckbox" <%= currentUser.profile[0].github.privacy === "private" ? "checked" : ""%> >
                 <label class="onoffswitch-label" for="githubCheckbox">
                   <span class="onoffswitch-inner"></span>
                   <span class="onoffswitch-switch"></span>

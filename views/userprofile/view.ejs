@@ -2,23 +2,36 @@
 <body class = "mobile-shift">
 <% include ../partials/navbar %>
 <% include ../partials/slide-out-nav %>
-
+<section class = "profile">
   <div class="profile-view">
     <img class = "profile--pic profile--item"src="/images/profile-images/<%=user.avatar%>" alt="">
     <h4 class="profile--item-group profile-view--title"><%= user.username %></h4>
     <h4 class="profile--item-group profile--item">member_id: <%= user.member_id %></h4>
-    <h4 class="profile--item-group profile--item" id="user-location">Location: <%= user.profile[0].location.location %></h4>
-    <h4 class="profile--item-group profile--item" id="user-phone">Phone: <%= user.profile[0].phone.phone%></h4>
-    <h4 class="profile--item-group profile--item" id="user-email">Email: <%= user.profile[0].email.email%></h4>
-    <h4 class="profile--item-group profile--item" id="user-facebook">Facebook: <%= user.profile[0].facebook.facebook%></h4>
-    <h4 class="profile--item-group profile--item" id="user-twitter">Twitter: <%= user.profile[0].twitter.twitter%></h4>
-    <h4 class="profile--item-group profile--item" id="user-reddit">Reddit: <%= user.profile[0].reddit.reddit%></h4>
-    <h4 class="profile--item-group profile--item" id="user-reddit">Snapchat: <%= user.profile[0].snapchat.snapchat%></h4>
-    <h4 class="profile--item-group profile--item" id="user-reddit">Instagram: <%= user.profile[0].instagram.instagram%></h4>
-    <h4 class="profile--item-group profile--item" id="user-reddit">Github: <%= user.profile[0].github.github%></h4>
+    <div class="profile--item-group profile--item">
+      <img class="profile-item--icon" src="/images/icons/iconmonstr-location-3-240.png" alt="">
+      <%= user.profile[0].location.location %>
+    </div>
+    <div class="profile--item-group profile--item">
+      <img class="profile-item--icon" src="/images/icons/iconmonstr-phone-8-240.png" alt="">
+      <%= user.profile[0].phone.phone%>
+    </div>
+    <div class="profile--item-group profile--item">
+      <img class="profile-item--icon" src="/images/icons/iconmonstr-email-10-240.png" alt="">
+      <%= user.profile[0].email.email%>
+    </div>
+    <div class="profile--item-group profile--item">
+      <div class="profile-view--title">links:</div>
+      <a <%= (user.profile[0].facebook.privacy != "private")||(friend)  ? "" : 'style = display:none;' %> href="<%= user.profile[0].facebook.facebook%>" target="_blank" ><img class="profile-item--icon" src="/images/icons/iconmonstr-facebook-4-240.png" alt=""></a>
+      <a <%= (user.profile[0].twitter.privacy != "private")||(friend)  ? "" : 'style = display:none;' %> href="<%= user.profile[0].twitter.twitter%>" target="_blank" ><img class="profile-item--icon" src="/images/icons/iconmonstr-twitter-4-240.png" alt=""></a>
+      <a <%= (user.profile[0].reddit.privacy != "private")||(friend)  ? "" : 'style = display:none;' %> href="<%= user.profile[0].reddit.reddit%>" target="_blank" ><img class="profile-item--icon" src="/images/icons/iconmonstr-reddit-4-240.png" alt=""></a>
+      <a <%= (user.profile[0].instagram.privacy != "private")||(friend)  ? "" : 'style = display:none;' %> href="<%= user.profile[0].instagram.instagram%>" target="_blank" ><img class="profile-item--icon" src="/images/icons/iconmonstr-instagram-14-240.png" alt=""></a>
+      <a <%= (user.profile[0].snapchat.privacy != "private")||(friend)  ? "" : 'style = display:none;' %> href="<%= user.profile[0].snapchat.snapchat%>" target="_blank" ><img class="profile-item--icon" src="/images/icons/iconmonstr-snapchat-4-240.png" alt=""></a>
+      <a <%= (user.profile[0].github.privacy != "private")||(friend)  ? "" : 'style = display:none;' %>href="<%= user.profile[0].github.github%>" target="_blank" ><img class="profile-item--icon" src="/images/icons/iconmonstr-github-4-240.png" alt=""></a>
+    </div>
 
         <!-- check if profile is a contact. FYI checkContact and checkRequestSent functions are declared at bottom of page -->
-      <% if(currentUser.friends.some(checkContact)){ %>
+      <!-- if(currentUser.friends.some(checkContact)){ -->
+      <% if(friend){ %>
         <h4 style="margin-top: 20px;" class="profile--item"><%= user.username %> is a contact!</h4>
       <% }else{ %>
         <!-- check if contact request has been sent -->
@@ -33,6 +46,7 @@
       <% } %>
 
   </div>
+</section>
 </body>
 
 <script src="../js/jquery-1.11.1.min.js"></script>

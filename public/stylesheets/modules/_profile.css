@@ -1,4 +1,14 @@
+/*.profile{
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;;
+  justify-content:flex-start;
+  margin-left: 20px;
+  margin-right:20px;
+}*/
+
 .profile-view {
+
   margin-top: 4rem;
   margin-left: 0px;
 
@@ -36,6 +46,8 @@
     padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   &--label{
@@ -136,6 +148,7 @@
     padding-left: 0px;
     letter-spacing: .01rem;
 
+
     @mixin atSmall{
       font: normal 1rem "Open Sans", sans-serif;
       color: #2f2f2f;
@@ -205,4 +218,10 @@
     margin-bottom: 20px;
   }
 
+}
+
+
+.profile-item--icon{
+  display: inline-block;
+  width: 36px;
 }

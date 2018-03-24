@@ -723,7 +723,17 @@ background-color: rgba(0, 160, 192, 0.85);
   left: -180px;
 }
 
+/*.profile{
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;;
+  justify-content:flex-start;
+  margin-left: 20px;
+  margin-right:20px;
+}*/
+
 .profile-view {
+
   margin-top: 4rem;
   margin-left: 0px;
 }
@@ -768,6 +778,8 @@ background-color: rgba(0, 160, 192, 0.85);
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .profile-edit--label{
@@ -957,6 +969,11 @@ background-color: rgba(0, 160, 192, 0.85);
   margin-left: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.profile-item--icon{
+  display: inline-block;
+  width: 36px;
 }
 
 .form-input {
