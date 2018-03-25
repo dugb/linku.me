@@ -1,0 +1,91 @@
+#chat_section_wrapper{
+	position: fixed;
+	bottom: 20px;
+	width: 100%;
+}
+
+.chat_section{
+	width: 430px;
+	float: right;
+	border: 1px solid #808080;
+	max-height: 430px;
+	margin-left: 5px;
+}
+
+.usr_msg{
+	margin-bottom: 10px;
+}
+
+.friend_request_pic img{
+	width: 60px;
+}
+
+.user_friend_list img{
+	width: 60px;
+}
+
+#profile_picture_div img{
+	width: 200px;
+}
+
+.all_chat_messages{
+	max-height: 300px;
+	height:200px;
+	overflow-y: scroll;
+	background-color: white;
+}
+
+#send_message{
+	border-top: 1px solid #808080;
+}
+
+#send_message input{
+  font-size: 1rem;
+	width:100%;
+}
+
+.usr_msg_box{
+	display: inline-block;
+	margin-left: 10px;
+	background-color: #e6e6e6;
+	border: 2px solid #a1a1a1;
+	border-radius: 12px;
+}
+
+.usr_msg_box p{
+	max-width: 200px;
+	word-wrap: break-word;
+	margin: 5px;
+}
+
+#send_message_input{
+	text-indent: 30%;
+	color: #666;
+	font-family: helvetica;
+	font-size: 12px;
+}
+
+#chat_title_section{
+	font-family: helvetica;
+	font-size: 15px;
+	font-weight: bold;
+	background: #808080;
+	height: 25px;
+}
+
+.chat_close{
+	display: inline-block;
+}
+
+#chat_title_section span{
+	vertical-align: top;
+}
+
+.chat_close{
+	margin-left: 60%;
+	cursor: pointer;
+}
+
+.chat_close img{
+	width: 25px;
+}

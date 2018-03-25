@@ -10,15 +10,13 @@ router.get('/', middleware.isLoggedIn, (req, res) => {
 });
 
 // view others users profile
-router.get('/:id', (req, res) => {
-
+router.get('/:id', middleware.isLoggedIn, (req, res) => {
   //find user with provided ID
   User.findOne({ member_id: req.params.id }, (err, user) => {
     if (err) {
       console.log(err);
       res.render('no user found');
     } else {
-
        if (user) {
               //if a contact then we do not filter the private stuff
             if (user.friends.some(checkContact, req.user.username)) {
@@ -26,6 +24,9 @@ router.get('/:id', (req, res) => {
             } else { //not a contact so we need to filter the private stuff
               if (user.profile[0].location.privacy === 'private') {
                     user.profile[0].location.location = 'private';
+                  }
+              if (user.profile[0].realname.privacy === 'private') {
+                    user.profile[0].realname.realname = 'private';
                   }
               if (user.profile[0].facebook.privacy === 'private') {
                     user.profile[0].facebook.facebook = 'private';
@@ -74,6 +75,8 @@ router.put('/edit/:id', middleware.checkProfileOwnership, (req, res) => {
       if (user) {
         user.profile[0].location.location = req.body.location;
         user.profile[0].location.privacy = req.body.locationCheckbox === undefined ? 'public' : 'private';
+        user.profile[0].realname.realname = req.body.realname;
+        user.profile[0].realname.privacy = req.body.realnameCheckbox === undefined ? 'public' : 'private';
         user.profile[0].facebook.facebook = preProcessUrl(req.body.facebook);
         user.profile[0].facebook.privacy = req.body.facebookCheckbox === undefined ? 'public' : 'private';
         user.profile[0].phone.phone = req.body.phone;

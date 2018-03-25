@@ -9,8 +9,9 @@
     <div class="profile--header">
       <img class = "profile--pic"src="/images/profile-images/<%=currentUser.avatar%>" alt="">
       <h4 class="profile-view--title"><%= currentUser.username %></h4>
-      <h4 class="profile--item">email: <%= currentUser.email %></h4>
-      <h4 class="profile--item">member_id: <%= currentUser.member_id %></h4>
+      <h4 class="profile-view--title" id="user-realname"><%= currentUser.profile[0].realname.realname %></h4>
+      <h4 class="profile--item"><%= currentUser.email %></h4>
+      <!-- <h4 class="profile--item">member_id: <%= currentUser.member_id %></h4> -->
     </div>
     <div class="profile--item-group">
       <span class="profile--item" id="user-location">Location: <%= currentUser.profile[0].location.location %></span>
@@ -71,6 +72,20 @@
                 <div class="onoffswitch">
                   <input type="checkbox" name="locationCheckbox" class="onoffswitch-checkbox" id="locationCheckbox" <%= currentUser.profile[0].location.privacy === "private" ? "checked" : ""%> >
                   <label class="onoffswitch-label" for="locationCheckbox">
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                  </label>
+                </div>
+            </div>
+
+            <div class="profile-edit--group">
+              <div class="profile-edit--input-group">
+                  <label class = "profile-edit--label" for="realnameInput">Real Name:</label>
+                  <input class="profile-edit--input"id="realnameInput" type="text" name="realname" value="<%= currentUser.profile[0].realname.realname%>">
+                </div>
+                <div class="onoffswitch">
+                  <input type="checkbox" name="realnameCheckbox" class="onoffswitch-checkbox" id="realnameCheckbox" <%= currentUser.profile[0].realname.privacy === "private" ? "checked" : ""%> >
+                  <label class="onoffswitch-label" for="realnameCheckbox">
                     <span class="onoffswitch-inner"></span>
                     <span class="onoffswitch-switch"></span>
                   </label>
@@ -214,6 +229,7 @@
 
         $("#edit-profile-container").hide();
         console.log("updated_user: ", updated_user);
+        $("#user-realname").html(updated_user.profile[0].realname.realname);
         $("#user-location").html("Location: " + updated_user.profile[0].location.location);
         $("#user-locationPriv").html(updated_user.profile[0].location.privacy);
         $("#user-facebook").html("Facebook: " + updated_user.profile[0].facebook.facebook);

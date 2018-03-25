@@ -21,4 +21,12 @@
     background-color: $danger;
   }
 
+  &--chat{
+    margin-left: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    letter-spacing: .12rem;
+    margin-bottom: 10px;
+  }
+
 }

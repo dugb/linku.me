@@ -5,8 +5,8 @@ const express       = require('express'),
  flash            = require('connect-flash'),
  passport         = require('passport'),
  LocalStrategy    = require('passport-local'),
- methodOverride   = require('method-override');
-
+ methodOverride   = require('method-override'),
+ io               = require('socket.io');
 
  const  User      = require('./models/user');
 
@@ -14,10 +14,10 @@ const express       = require('express'),
  require('dotenv').config();
 
 // requiring Routes
-var indexRoutes = require('./routes/index');
-var userProfileRoutes = require('./routes/user-profile');
-var userSearchRoutes = require('./routes/user-search');
-var contactsRoutes = require('./routes/contacts');
+const indexRoutes = require('./routes/index');
+const userProfileRoutes = require('./routes/user-profile');
+const userSearchRoutes = require('./routes/user-search');
+const contactsRoutes = require('./routes/contacts');
 
 // PASSPORT CONFIGURATION
 app.use(require('express-session')({
