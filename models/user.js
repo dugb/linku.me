@@ -47,9 +47,11 @@ const UserProfileSchema = mongoose.Schema({
 });
 
 const UserSchema = mongoose.Schema({
-  email: String,
-  username: String,
+  email: { type: String, unique: true, required: true },
+  username: { type: String, unique: true, required: true },
   password: String,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
   member_id: { type: String, default: shortid.generate },
   avatar: { type: String, default: 'default_profile.png' },
   friends: [{ member_id: String, friend_name: String, profile_pic: String }],

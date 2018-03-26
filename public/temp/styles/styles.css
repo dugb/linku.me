@@ -1220,6 +1220,14 @@ background-color: rgba(0, 160, 192, 0.85);
   margin-top: 15px;
 }
 
+.forgot-link{
+  margin-top: 15px;
+  font-size: 1rem;
+  color: blue;
+  opacity: .85;
+  text-decoration: none;
+}
+
 @keyframes slidefade {
   100% {
     opacity: 1;

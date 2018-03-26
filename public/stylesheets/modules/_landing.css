@@ -97,6 +97,13 @@
 
 }
 
+.forgot-link{
+  margin-top: 15px;
+  font-size: 1rem;
+  color: blue;
+  opacity: .85;
+  text-decoration: none;
+}
 
 @keyframes slidefade {
   100% {
