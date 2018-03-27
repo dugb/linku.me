@@ -29,4 +29,28 @@
     margin-bottom: 10px;
   }
 
+  &--large{
+    text-decoration: none;
+    opacity: 0.75;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: #3f51b5;
+    opacity: 0.75;
+    padding: 10px 16px;
+    border-radius: 16px;
+    border: none;
+  }
+
+  &--block{
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  &--spaced{
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
 }

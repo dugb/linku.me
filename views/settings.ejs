@@ -5,8 +5,55 @@
     <% include ./partials/navbar %>
     <% include ./partials/slide-out-nav %>
   </header>
+  <div class = "alerts">
+    <% if(error && error.length > 0){ %>
+      <div class="alert--userhome alert--red" role="alert">
+        <%= error %>
+      </div>
+    <% } %>
+    <% if(success && success.length > 0){ %>
+      <div class="alert--userhome alert--green" role="alert">
+        <%= success %>
+      </div>
+    <% } %>
+  </div>
   <section class = "settings">
-    <h1>Settings</h1>
+    <h1 class = "settings--title">Settings</h1>
+    <ul class = "settings--list">
+      <li class = "settings--item"><button id = "show-change-pw" class = "btn btn--orange btn--block" >Change Password</button></li>
+    </ul>
+    <div style = "display:none" id = "change-pw-container"class = "settings--change-pw">
+      <form class="" action="/changepw/<%=currentUser.member_id%>" method="post">
+        <div class="">
+          <input type="password" id="password" name="password" value="" placeholder="New password" autofocus="autofocus" class="form-input"/>
+        </div>
+        <div class="">
+          <input type="password" id="confirm" name="confirm" value="" placeholder="Confirm password" class="form-input"/>
+        </div>
+        <div class="landing--btn-block">
+          <input type="submit" class="btn" value="update password">
+        </div>
+      </form>
+      <button id = "cancel-change-pw" class = "btn btn--orange btn--spaced" >cancel</button>
+    </div>
+
 
   </section>
   </body>
+
+  <script src="../js/jquery-1.11.1.min.js"></script>
+  <script src="../js/functions.js"></script>
+  <script type="text/javascript">
+
+
+
+  $("#show-change-pw").on("click", function(){
+    $("#change-pw-container").show();
+  })
+  $("#cancel-change-pw").on("click", function(){
+    $("#password").val("");
+    $("#confirm").val("");
+    $("#change-pw-container").hide();
+  })
+
+  </script>

@@ -7,7 +7,6 @@ const async = require('async');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
-
 // show register form
 router.get('/register', function(req, res){
   res.render('register');
@@ -94,13 +93,13 @@ router.post('/forgot', function(req, res, next) {
       var smtpTransport = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-          user: 'dugbdev@gmail.com',
+          user: 'linkumemail@gmail.com',
           pass: process.env.GMAILPW
         }
       });
       var mailOptions = {
         to: user.email,
-        from: 'dugbdev@gmail.com',
+        from: 'linkumemail@gmail.com',
         subject: 'LinkU.Me Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -160,13 +159,13 @@ router.post('/reset/:token', function(req, res) {
       var smtpTransport = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-          user: 'dugbdev@gmail.com',
+          user: 'linkumemail@gmail.com',
           pass: process.env.GMAILPW
         }
       });
       var mailOptions = {
         to: user.email,
-        from: 'dugbdev@mail.com',
+        from: 'linkumemail@gmail.com',
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
@@ -181,6 +180,43 @@ router.post('/reset/:token', function(req, res) {
   });
 });
 
+//change pw route
+router.post('/changepw/:id', middleware.isLoggedIn, (req, res) => {
+  async.waterfall([
+    function(done) {
+      User.findOne({ 'member_id': req.params.id }, (err, user) => {
 
+        if (err) {
+          console.log(err);
+        } else {
+          if (user) {
+            if (req.body.password === req.body.confirm) {
+              user.setPassword(req.body.password, function(err) {
+                user.resetPasswordToken = undefined;
+                user.resetPasswordExpires = undefined;
+
+                user.save(function(err) {
+                  req.logIn(user, function(err) {
+                    done(err, user);
+                  });
+                });
+              })
+            } else {
+                req.flash("error", "Passwords do not match.");
+                return res.redirect('back');
+            }
+
+
+          } else {
+            res.send('user not found');
+          }
+        }
+      })
+    }
+  ],function(err) {
+    req.flash('success', 'Success! Your password has been changed.');
+    res.redirect('/settings');
+  }
+)})
 
 module.exports = router;

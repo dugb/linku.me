@@ -442,7 +442,7 @@ ul {
 }
 
 .btn {
-  background-color: #2f5572;
+  background-color: #3f51b5;
   color: #FFF;
   text-decoration: none;
   padding: .2rem .8rem;
@@ -472,6 +472,31 @@ ul {
   padding-right: 15px;
   letter-spacing: .12rem;
   margin-bottom: 10px;
+}
+
+.btn--large{
+  text-decoration: none;
+  opacity: 0.75;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: #3f51b5;
+  opacity: 0.75;
+  padding: 10px 16px;
+  border-radius: 16px;
+  border: none;
+}
+
+.btn--block{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.btn--spaced{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .contacts {
@@ -1251,6 +1276,34 @@ background-color: rgba(0, 160, 192, 0.85);
     opacity: 1;
     margin: 0;
   }
+}
+
+.settings {
+  margin-top: 4rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: start;
+      align-items: flex-start;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-left: 20px;
+  margin-right:20px;
+}
+
+@media (min-width: 800px) {
+
+  .settings {
+    margin-top: 6rem;/*display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    justify-content: space-around;*/
+  }
+}
+
+.settings--title{
+  color: green;
 }
 
 #chat_section_wrapper{
