@@ -14,19 +14,39 @@ router.get('/register', function(req, res){
 
 // handle sign up logic
 router.post('/register', function(req, res){
-  var newUser = new User({email: req.body.email, username: req.body.username, "profile": {}});
-  User.register(newUser, req.body.password, function(err, user){
-      if(err){
-        //console.log(err);
-        return res.render('register', {'error': err.message});
-      }
-      passport.authenticate('local')(req, res, function(){
 
-        //redirect to home(rooms index)
-        // req.flash('success', "Welcome " + user.username);
-        res.redirect('userhome');
+var newUser = new User({email: req.body.email, username: req.body.username.toLowerCase(), "profile": {}});
+console.log("newuser:", newUser.username);
+
+  User.findOne({ email: req.body.email }, function(err, user) {
+    if (user) {
+      req.flash('error', 'An account with that email already exists.');
+      return res.redirect('/register');
+    }else{
+      User.findOne({ username: newUser.username }, function(err, user) {
+        if (user) {
+          req.flash('error', 'An account with that username already exists.');
+          return res.redirect('/register');
+        }else{
+          User.register(newUser, req.body.password, function(err, user){
+              if(err){
+                //console.log(err);
+                return res.render('register', {'error': err.message});
+              }
+              passport.authenticate('local')(req, res, function(){
+                //redirect to home(rooms index)
+                req.flash('success', "Welcome " + user.username);
+                return res.redirect('userhome');
+              });
+          });
+        }
       });
+    }
   });
+
+
+
+
 });
 
 // show login form
