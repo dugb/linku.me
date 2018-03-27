@@ -1,22 +1,20 @@
 <% include ./partials/header %>
 <body>
 <% include ./partials/alerts %>
-<div class="row">
-	<div class="col-md-12">
+<section class = "landing">
+    <div class="landing--background-image" style="background-image: url(/images/landing002.jpg);"></div>
+    <h1 class = "landing--title"><a class = "landing--title-link"href="/">linkU.Me</a></h1>
+
 		<form action="/reset/<%= token %>" method="post">
-		  <legend>Reset Password</legend>
-		  <div class="form-group">
-		    <label for="password">New Password</label>
-		    <input type="password" name="password" value="" placeholder="New password" autofocus="autofocus" class="form-control"/>
+		  <div class="">
+		    <input type="password" name="password" value="" placeholder="New password" autofocus="autofocus" class="form-input"/>
 		  </div>
-		  <div class="form-group">
-		    <label for="confirm">Confirm Password</label>
-		    <input type="password" name="confirm" value="" placeholder="Confirm password" class="form-control"/>
+		  <div class="">
+		    <input type="password" name="confirm" value="" placeholder="Confirm password" class="form-input"/>
 		  </div>
-		  <div class="form-group">
-		    <button type="submit" class="btn btn-primary">Update Password</button>
+		  <div class="landing--btn-block">
+		    <input type="submit" class="landing--btn" value="update password">
 		  </div>
 		</form>
-	</div>
-</div>
+</section>
 </body>

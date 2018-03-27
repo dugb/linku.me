@@ -1,10 +1,25 @@
 <% include ./partials/header %>
 <body class = "mobile-shift">
 
+
   <header>
     <% include ./partials/navbar %>
     <% include ./partials/slide-out-nav %>
   </header>
+
+  <div class = "alerts">
+    <% if(error && error.length > 0){ %>
+      <div class="alert--userhome alert--red" role="alert">
+        <%= error %>
+      </div>
+    <% } %>
+    <% if(success && success.length > 0){ %>
+      <div class="alert--userhome alert--green" role="alert">
+        <%= success %>
+      </div>
+    <% } %>
+  </div>
+
   <section class = "contacts">
   <!-- contact list -->
   <div class="contacts-list">

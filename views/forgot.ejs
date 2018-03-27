@@ -1,18 +1,19 @@
 <% include ./partials/header %>
 <body>
 <% include ./partials/alerts %>
-<div class="row">
-	<div class="col-md-12">
+<section class = "landing">
+    <div class="landing--background-image" style="background-image: url(/images/landing002.jpg);"></div>
+    <h1 class = "landing--title"><a class = "landing--title-link"href="/">linkU.Me</a></h1>
+
 		<form action="/forgot" method="POST">
-			<legend>Forgot Password</legend>
-			<div class="form-group">
-				<label for="email">Email</label>
-				<input type="email" name="email" autofocus class="form-control">
+			<div class="">
+				<input type="email" name="email" placeholder="email" autofocus class="form-input">
 			</div>
-			<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Reset Password">
+
+			<div class="landing--btn-block">
+				<input type="submit" class="landing--btn" value="Reset Password">
 			</div>
 		</form>
-	</div>
-</div>
+
+</section>
 <body>

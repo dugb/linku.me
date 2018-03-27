@@ -1105,6 +1105,24 @@ background-color: rgba(0, 160, 192, 0.85);
   background-color: rgba(141, 224, 170, 0.5);
 }
 
+.alert--userhome{
+  width: 100%;
+  position: absolute;
+  top: -4rem;
+  font-size: 1.25rem;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  text-align: center;
+  color: #fff;
+}
+
+@media (min-width: 530px) {
+
+  .alert--userhome {
+    top: -6rem;
+  }
+}
+
 .landing {
   display: -ms-flexbox;
   display: flex;
