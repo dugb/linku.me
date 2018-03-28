@@ -43,15 +43,14 @@
       <% currentUser.friend_requests_recvd.forEach(function(friend_request){ %>
         <% if(friend_request){ %>
         <li id = "potential-friend"><span class="contact-name"><%= friend_request.friend_name %></span>
-          <a class = "btn btn-sm btn-info" href="/user-profile/<%= friend_request.member_id %>" >view</a>
-          <button id = "<%= friend_request.id %>" class="btn btn-sm btn--orange accept-friend-request" type="button" name="button">accept</button>
+          <a class = "btn btn--sm" href="/user-profile/<%= friend_request.member_id %>" >view</a>
+          <button id = "<%= friend_request.member_id %>" class="btn btn--sm btn--orange accept-friend-request" type="button" name="button">accept</button>
+          <button id = "<%= friend_request.member_id %>" class="btn btn--sm btn--red decline-friend-request" type="button" name="button">decline</button>
           <!-- <a href="/user-profile/accept-friend-request/<%= friend_request.id %>" >accept</a> -->
         </li>
       <% }}) %>
     </ul>
   </div>
-
-
 
   <!-- SEARCH -->
   <div class="contacts-search">
@@ -123,6 +122,20 @@
     })
   });
 
+$(".decline-friend-request").on("click", function(){
+  var clicked_button = $(this);
+  console.log(clicked_button.attr("id"));
+  $.ajax({
+    method: "POST",
+    url: "/contacts/contact-cancel-request",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({"id": clicked_button.attr("id")}),
+    success: function(declinedContact){
+      clicked_button.parents('li').remove();
+    }
+  })
+});
 
 $(document).on('click','.remove-friend', function(){
 
@@ -139,7 +152,7 @@ $(document).on('click','.remove-friend', function(){
       clicked_button.parents('li').remove();
     }
   })
-});
+})
 
 
 </script>

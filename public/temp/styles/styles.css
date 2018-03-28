@@ -466,6 +466,10 @@ ul {
   background-color: #ff5400;
 }
 
+.btn--sm{
+  font-size: .75rem;
+}
+
 .btn--chat{
   margin-left: 10px;
   padding-left: 15px;

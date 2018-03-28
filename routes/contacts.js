@@ -17,10 +17,10 @@ router.get('/contact-request/:id', middleware.isLoggedIn, function(req, res){
         if(err){
           return res.status(500).json({'error' : 'error in sending contact request'});
         }else{
-          potentialFriend.update({$push: {"friend_requests_recvd": {"member_id": sendingFriend.member_id, "friend_name": sendingFriend.username, "id": sendingFriend._id}}}, function(err, results){
-            sendingFriend.update({$push: {"friend_requests_sent": {"member_id": potentialFriend.member_id, "friend_name": potentialFriend.username, "id": potentialFriend._id}}}, function(err, resluts2){
+          potentialFriend.update({ $push: {"friend_requests_recvd": {"member_id": sendingFriend.member_id, "friend_name": sendingFriend.username, "id": sendingFriend._id}}}, function(err, results){
+            sendingFriend.update({ $push: {"friend_requests_sent": {"member_id": potentialFriend.member_id, "friend_name": potentialFriend.username, "id": potentialFriend._id}}}, function(err, resluts2){
               if(err){
-                return res.status(500).json({'error' : 'error in sending contact request'});
+                return res.status(500).json({ 'error' : 'error in sending contact request'});
               }else{
                 res.json(results);
               }
@@ -34,11 +34,11 @@ router.get('/contact-request/:id', middleware.isLoggedIn, function(req, res){
 
 router.post('/accept-contact-request', middleware.isLoggedIn, function(req, res){
 
-  User.findById(req.body.id, function(err, newFriend){
+  User.findOne({member_id: req.body.id}, function(err, newFriend){
     if(err){
       console.log(err);
     }else{
-      User.findById(req.user._id, function(err, currentUser){
+      User.findOne({member_id: req.user.member_id}, function(err, currentUser){
         if(err){
           return res.status(500).json({'error' : 'error in accepting contact request'});
         }else{

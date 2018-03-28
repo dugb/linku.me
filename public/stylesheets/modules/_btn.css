@@ -21,6 +21,10 @@
     background-color: $danger;
   }
 
+  &--sm{
+    font-size: .75rem;
+  }
+
   &--chat{
     margin-left: 10px;
     padding-left: 15px;
