@@ -8,34 +8,34 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
 // show register form
-router.get('/register', function(req, res){
+router.get('/register', (req, res) => {
   res.render('register');
 });
 
 // handle sign up logic
-router.post('/register', function(req, res){
+router.post('/register', (req, res) => {
 
-var newUser = new User({email: req.body.email, username: req.body.username.toLowerCase(), "profile": {}});
+let newUser = new User({email: req.body.email, username: req.body.username.toLowerCase(), profile: {} });
 console.log("newuser:", newUser.username);
 
-  User.findOne({ email: req.body.email }, function(err, user) {
+  User.findOne({ email: req.body.email }, (err, user) => {
     if (user) {
       req.flash('error', 'An account with that email already exists.');
       return res.redirect('/register');
-    }else{
-      User.findOne({ username: newUser.username }, function(err, user) {
+    } else {
+      User.findOne({ username: newUser.username }, (err, user) => {
         if (user) {
           req.flash('error', 'An account with that username already exists.');
           return res.redirect('/register');
         }else{
-          User.register(newUser, req.body.password, function(err, user){
-              if(err){
+          User.register(newUser, req.body.password, (err, user) => {
+              if (err) {
                 //console.log(err);
-                return res.render('register', {'error': err.message});
+                return res.render('register', {error: err.message });
               }
               passport.authenticate('local')(req, res, function(){
                 //redirect to home(rooms index)
-                req.flash('success', "Welcome " + user.username);
+                req.flash('success', 'Welcome ' + user.username);
                 return res.redirect('userhome');
               });
           });
@@ -43,46 +43,42 @@ console.log("newuser:", newUser.username);
       });
     }
   });
-
-
-
-
 });
 
 // show login form
-router.get('/login', function(req, res){
+router.get('/login', (req, res) => {
   res.render('login');
 });
 
 // handle login logic
-router.post('/login', passport.authenticate("local",
+router.post('/login', passport.authenticate('local',
   {
-    successRedirect: "userhome",
-    failureRedirect: "login"
-  }), function(req, res){
+    successRedirect: 'userhome',
+    failureRedirect: 'login'
+  }), (req, res) => {
 });
 
 // user home
-router.get('/userhome', middleware.isLoggedIn, function(req, res){
+router.get('/userhome', middleware.isLoggedIn, (req, res) => {
   res.render('userhome');
 });
 
 // settings
-router.get('/settings', middleware.isLoggedIn, function(req, res){
+router.get('/settings', middleware.isLoggedIn, (req, res) => {
   res.render('settings');
 });
 
 
 // logout route
-router.get('/logout', function(req, res){
+router.get('/logout', (req, res) => {
   req.logout();
-  req.flash('success', 'Logged out!')
+  req.flash('success', 'Logged out!');
   res.redirect('/');
-})
+});
 
 
 // forgot password
-router.get('/forgot', function(req, res) {
+router.get('/forgot', (req, res) => {
   res.render('forgot');
 });
 
@@ -222,7 +218,7 @@ router.post('/changepw/:id', middleware.isLoggedIn, (req, res) => {
                 });
               })
             } else {
-                req.flash("error", "Passwords do not match.");
+                req.flash('error', 'Passwords do not match.');
                 return res.redirect('back');
             }
 
