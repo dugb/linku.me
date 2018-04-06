@@ -1310,6 +1310,87 @@ background-color: rgba(0, 160, 192, 0.85);
   color: green;
 }
 
+.messenger {
+  margin-top: 4rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align:start;
+      align-items:flex-start;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-left: 20px;
+  margin-right:20px;
+}
+
+@media (min-width: 800px) {
+
+  .messenger {
+    margin-top: 6rem;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-align: start;
+        align-items: flex-start;
+    -ms-flex-pack: distribute;
+        justify-content: space-around
+    ;
+  }
+}
+
+.chatBoxWrap{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: start;
+      align-items: flex-start;
+  width: 50%;
+  margin-right: 20px;
+}
+
+.msgForm{
+  margin-top: 15px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.msgInput {
+  overflow-y: scroll;
+  margin-left: 0;
+  width: 400px;
+  height: 80px;
+  max-height: 200px;
+}
+
+.msgSendBtn{
+  margin-left: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 70px;
+  font-size: 1.4rem;
+}
+
+.chat {
+  width: 95%;
+  padding: 10px;
+  border: 2px solid grey;
+  max-height: 800px;
+	height:500px;
+  border-radius: 6px;
+	overflow-y: scroll;
+	background-color: white;
+  color: black;
+  font-size: 2rem;
+  opacity: .6;
+}
+
 #chat_section_wrapper{
 	position: fixed;
 	bottom: 20px;

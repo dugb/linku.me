@@ -1,0 +1,99 @@
+<% include ./partials/header %>
+<body class = "mobile-shift">
+
+  <header>
+    <% include ./partials/navbar %>
+    <% include ./partials/slide-out-nav %>
+  </header>
+
+  <div class = "alerts">
+    <% if(error && error.length > 0){ %>
+      <div class="alert--userhome alert--red" role="alert">
+        <%= error %>
+      </div>
+    <% } %>
+    <% if(success && success.length > 0){ %>
+      <div class="alert--userhome alert--green" role="alert">
+        <%= success %>
+      </div>
+    <% } %>
+  </div>
+
+<section class = "messenger">
+  <!-- contact list -->
+  <div class="contacts-list">
+    <h3>Contacts</h3>
+    <ul id="contact-list">
+      <% currentUser.friends.forEach(function(friends){ %>
+      <% if(friends){ %>
+      <li class = "contact">
+        <span class = "contact-name"><%= friends.friend_name %></span>
+        <a class = "btn btn-sm btn-info" href="/user-profile/<%= friends.member_id %>">view</a>
+        <button id = "<%= friends.member_id %>" class="btn btn-sm btn--info" type="button" name="button">chat</button>
+
+      </li>
+      <% }}) %>
+    </ul>
+  </div>
+
+  <!-- chatBox -->
+  <div id="chatWrap" class="chatBoxWrap">
+    <div id="chat" class="chat"></div>
+    <form id="send-message">
+      <input class = " form-input msgInput "id="message" size="35"></input>
+      <input class = "btn msgSendBtn" type="submit"></input>
+    </form>
+  </div>
+
+</section>
+
+
+
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+  jQuery(function($){
+    const socket = io.connect();
+    const $messageForm = $('#send-message');
+    const $messageBox = $('#message');
+    const $chat = $('#chat');
+
+
+    socket.emit('new user', '<%=currentUser.username%>', function(data){
+    if (data){
+            console.log("OK!!!");
+          } else {
+            console.log("NOT OK!!!")
+          }
+    });
+
+
+        //submit message event-handler
+        $('#send-message').submit(function(e){
+          e.preventDefault();
+          console.log("submit: ", $messageBox.val());
+          socket.emit('send message', $messageBox.val(), function(data){
+            $chat.append('<span class="error">' + data + "</span><br/>");
+
+          });
+          $messageBox.val('');
+        });
+
+        socket.on('new message', function(data){
+        displayMsg(data)
+      });
+
+      function displayMsg(data){
+        console.log(data);
+        console.log("msg rcvd to client: ", data.msg );
+        console.log("from: ", data.nick );
+        $chat.append('<span class="msg"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
+      };
+});
+</script>
+
+</html>
