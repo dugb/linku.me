@@ -52,7 +52,7 @@ router.post('/accept-contact-request', middleware.isLoggedIn, (req, res) => {
                 currentUser.update({ $push: { friends: newContact }, $pull: { friend_requests_recvd: { id: newFriend._id } } }, (err, results2) => {
                 res.json(newContact);
                 //create a new Conversation in db for the two new friends
-                const newConversation = new Conversation({users: [{member_id: currentUser.member_id, username: currentUser.username}, {member_id: newFriend.member_id, username: newFriend.username}]});
+                const newConversation = new Conversation({users: [currentUser.username, newFriend.username]});
                 newConversation.save(function(err){
                   if (err) throw err;
                 });

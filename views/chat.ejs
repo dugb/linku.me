@@ -72,6 +72,12 @@
       const clicked_button = $(this);
       $chatTitle.attr("id", clicked_button.attr("id"))
       $chatTitle.html(clicked_button.attr("id"))
+      $chat.html('');
+      const data = { from: '<%=currentUser.username%>', to: clicked_button.attr("id")}
+      socket.emit('get old msgs', data, function(){
+
+      })
+
     });
 
 
@@ -83,44 +89,66 @@
           }
     });
 
-
         //submit message event-handler
         $('#send-message').submit(function(e){
           e.preventDefault();
-          console.log("submit: ", $messageBox.val());
-          const msgData = {
-            body: $messageBox.val(),
-            author: '<%=currentUser.username%>',
-            to: $chatTitle.attr("id")
-          }
-          socket.emit('send message', msgData, function(data){
-            $chat.append('<span class="error">' + data + "</span><br/>");
+          if(($chatTitle.attr("id")!=='chatTitle')&&($messageBox.val().length > 0)){
+            console.log("true");
+            console.log("submit: ", $messageBox.val());
+            const msgData = {
+              body: $messageBox.val(),
+              author: '<%=currentUser.username%>',
+              to: $chatTitle.attr("id")
+            }
+            socket.emit('send message', msgData, function(data){
+              $chat.append('<span class="error">' + data + "</span><br/>");
 
-          });
-          $messageBox.val('');
+            });
+            $messageBox.val('');
+          } else {
+            console.log("false");
+          }
         });
 
         socket.on('new message', function(data){
           displayMsg(data)
         });
 
-        socket.on('whisper', function(data){
-          let display = '';
-          if(data.nick === '<%=currentUser.username%>'){
-            display = ''
-          }else{
-            display = '<span class="whisper whisper--right"><b>' + data.nick +': </b>'+ data.msg + '</span><br/>'
+        socket.on('load old msgs', function(docs){
+          for( i=docs.length-1; i>=0; i--){
+            console.log("docs: ", docs[i]);
+            displayOldMsg(docs[i])
           }
-          console.log("from: ", data.nick );
-          $chat.append('<span class="whisper whisper--left"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
+        });
+
+        socket.on('whisper', function(data){
+          if((data.nick===$chatTitle.attr("id"))||(data.nick==='<%=currentUser.username%>')){
+            if(data.nick==='<%=currentUser.username%>'){
+              $chat.append('<span class="msg msg-from"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
+            } else {
+              $chat.append('<span class="msg msg-to"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
+            }
+
+          }
         });
 
       function displayMsg(data){
         console.log(data);
         console.log("msg rcvd to client: ", data.msg );
         console.log("from: ", data.nick );
+        if (data.nick==='<%=currentUser.username%>'){
+          $chat.append('<span class="msg msg-from"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
+        } else {
+          $chat.append('<span class="msg msg-to"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
+        }
+      };
 
-        $chat.append('<span class="msg"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
+      function displayOldMsg(data){
+        if (data.author==='<%=currentUser.username%>'){
+          $chat.append('<span class="msg msg-from"><b>' + data.author +': </b>'+ data.body + "</span><br/>");
+        } else {
+          $chat.append('<span class="msg msg-to"><b>' + data.author +': </b>'+ data.body + "</span><br/>");
+        }
       };
 });
 </script>
