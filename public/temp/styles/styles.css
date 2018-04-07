@@ -1391,6 +1391,19 @@ background-color: rgba(0, 160, 192, 0.85);
   opacity: .6;
 }
 
+.whisper {
+  color: green;
+  width: 100%;
+}
+
+.whisper--right{
+  text-align: right;
+}
+
+.whisper--left {
+  text-align: left;
+}
+
 #chat_section_wrapper{
 	position: fixed;
 	bottom: 20px;

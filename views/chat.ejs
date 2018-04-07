@@ -29,7 +29,7 @@
       <li class = "contact">
         <span class = "contact-name"><%= friends.friend_name %></span>
         <a class = "btn btn-sm btn-info" href="/user-profile/<%= friends.member_id %>">view</a>
-        <button id = "<%= friends.member_id %>" class="btn btn-sm btn--info" type="button" name="button">chat</button>
+        <button id = "<%= friends.friend_name %>" class="btn btn-sm btn--info chatBtn" type="button" name="button">chat</button>
 
       </li>
       <% }}) %>
@@ -38,7 +38,11 @@
 
   <!-- chatBox -->
   <div id="chatWrap" class="chatBoxWrap">
-    <div id="chat" class="chat"></div>
+    <div id = "chatTitle" class="chatTitle">
+      Chatting with:  id gets set to chat partners name,
+
+    </div>
+    <div id="chat" class="chat">Choose a contact to chat with.</div>
     <form id="send-message">
       <input class = " form-input msgInput "id="message" size="35"></input>
       <input class = "btn msgSendBtn" type="submit"></input>
@@ -61,6 +65,14 @@
     const $messageForm = $('#send-message');
     const $messageBox = $('#message');
     const $chat = $('#chat');
+    const $chatBtn = $('.chatBtn');
+    const $chatTitle = $('.chatTitle');
+
+    $chatBtn.on("click", function(){
+      const clicked_button = $(this);
+      $chatTitle.attr("id", clicked_button.attr("id"))
+      $chatTitle.html(clicked_button.attr("id"))
+    });
 
 
     socket.emit('new user', '<%=currentUser.username%>', function(data){
@@ -76,7 +88,12 @@
         $('#send-message').submit(function(e){
           e.preventDefault();
           console.log("submit: ", $messageBox.val());
-          socket.emit('send message', $messageBox.val(), function(data){
+          const msgData = {
+            body: $messageBox.val(),
+            author: '<%=currentUser.username%>',
+            to: $chatTitle.attr("id")
+          }
+          socket.emit('send message', msgData, function(data){
             $chat.append('<span class="error">' + data + "</span><br/>");
 
           });
@@ -84,13 +101,25 @@
         });
 
         socket.on('new message', function(data){
-        displayMsg(data)
-      });
+          displayMsg(data)
+        });
+
+        socket.on('whisper', function(data){
+          let display = '';
+          if(data.nick === '<%=currentUser.username%>'){
+            display = ''
+          }else{
+            display = '<span class="whisper whisper--right"><b>' + data.nick +': </b>'+ data.msg + '</span><br/>'
+          }
+          console.log("from: ", data.nick );
+          $chat.append('<span class="whisper whisper--left"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
+        });
 
       function displayMsg(data){
         console.log(data);
         console.log("msg rcvd to client: ", data.msg );
         console.log("from: ", data.nick );
+
         $chat.append('<span class="msg"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
       };
 });

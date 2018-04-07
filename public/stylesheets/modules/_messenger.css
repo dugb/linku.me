@@ -59,3 +59,17 @@
   font-size: 2rem;
   opacity: .6;
 }
+
+.whisper {
+  color: green;
+  width: 100%;
+
+
+  &--right{
+    text-align: right;
+  }
+
+  &--left {
+    text-align: left;
+  }
+}
