@@ -19,32 +19,37 @@
     <% } %>
   </div>
 
-<section class = "messenger">
-  <!-- contact list -->
-  <div class="contacts-list">
-    <h3>Contacts</h3>
-    <ul id="contact-list">
-      <% currentUser.friends.forEach(function(friends){ %>
-      <% if(friends){ %>
-      <li class = "contact">
-        <span class = "contact-name"><%= friends.friend_name %></span>
-        <a class = "btn btn-sm btn-info" href="/user-profile/<%= friends.member_id %>">view</a>
-        <button id = "<%= friends.friend_name %>" class="btn btn-sm btn--info chatBtn" type="button" name="button">chat</button>
 
-      </li>
-      <% }}) %>
-    </ul>
+<section class = "messenger">
+  <nav class="topnav">
+    <a href="#" >select a contact to chat with</a>
+  </nav>
+  <!-- contact list -->
+  <div class="contacts-list-chat">
+    <div id="sideNavigation" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" >&times;</a>
+      <ul id="contact-list">
+        <% currentUser.friends.forEach(function(friends){ %>
+        <% if(friends){ %>
+        <li class = "contact">
+          <!-- <span class = "contact-name"><%= friends.friend_name %></span> -->
+          <!-- <a class = "btn btn-sm btn-info" href="/user-profile/<%= friends.member_id %>">view</a> -->
+          <button id = "<%= friends.friend_name %>" class="btn btn-sm btn--info chatBtn" type="button" name="button"><%= friends.friend_name %></button>
+
+        </li>
+        <% }}) %>
+      </ul>
+    </div>
   </div>
 
   <!-- chatBox -->
   <div id="chatWrap" class="chatBoxWrap">
-    <div id = "chatTitle" class="chatTitle">
-      Chatting with:  id gets set to chat partners name,
-
+    <div id = "chatTitle" class="chat--title">
+      Choose a contact to chat with
     </div>
-    <div id="chat" class="chat">Choose a contact to chat with.</div>
-    <form id="send-message">
-      <input class = " form-input msgInput "id="message" size="35"></input>
+    <div id="chat" class="chat"></div>
+    <form id="send-message" class="send-message-form">
+      <textarea class = "msgInput "id="message" size="35"> </textarea>
       <input class = "btn msgSendBtn" type="submit"></input>
     </form>
   </div>
@@ -54,11 +59,13 @@
 
 
 </body>
-<script
+<!-- <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> -->
     <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/functions.js"></script>
 <script type="text/javascript">
   jQuery(function($){
     const socket = io.connect();
@@ -66,7 +73,7 @@
     const $messageBox = $('#message');
     const $chat = $('#chat');
     const $chatBtn = $('.chatBtn');
-    const $chatTitle = $('.chatTitle');
+    const $chatTitle = $('#chatTitle');
 
     $chatBtn.on("click", function(){
       const clicked_button = $(this);
@@ -77,7 +84,7 @@
       socket.emit('get old msgs', data, function(){
 
       })
-
+      $('#sideNavigation').width('0px');
     });
 
 
@@ -93,8 +100,6 @@
         $('#send-message').submit(function(e){
           e.preventDefault();
           if(($chatTitle.attr("id")!=='chatTitle')&&($messageBox.val().length > 0)){
-            console.log("true");
-            console.log("submit: ", $messageBox.val());
             const msgData = {
               body: $messageBox.val(),
               author: '<%=currentUser.username%>',
@@ -102,7 +107,6 @@
             }
             socket.emit('send message', msgData, function(data){
               $chat.append('<span class="error">' + data + "</span><br/>");
-
             });
             $messageBox.val('');
           } else {
@@ -110,47 +114,46 @@
           }
         });
 
-        socket.on('new message', function(data){
-          displayMsg(data)
-        });
-
         socket.on('load old msgs', function(docs){
           for( i=docs.length-1; i>=0; i--){
             console.log("docs: ", docs[i]);
-            displayOldMsg(docs[i])
+            displayMsg(docs[i])
           }
         });
 
         socket.on('whisper', function(data){
-          if((data.nick===$chatTitle.attr("id"))||(data.nick==='<%=currentUser.username%>')){
-            if(data.nick==='<%=currentUser.username%>'){
-              $chat.append('<span class="msg msg-from"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
-            } else {
-              $chat.append('<span class="msg msg-to"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
-            }
-
+          if((data.author===$chatTitle.attr("id"))||(data.author==='<%=currentUser.username%>')){
+            console.log("data.body:", data.body);
+            console.log("data.author:", data.author);
+            displayMsg(data);
           }
         });
 
-      function displayMsg(data){
-        console.log(data);
-        console.log("msg rcvd to client: ", data.msg );
-        console.log("from: ", data.nick );
-        if (data.nick==='<%=currentUser.username%>'){
-          $chat.append('<span class="msg msg-from"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
-        } else {
-          $chat.append('<span class="msg msg-to"><b>' + data.nick +': </b>'+ data.msg + "</span><br/>");
-        }
-      };
+        function displayMsg(data){
+          if (data.author==='<%=currentUser.username%>'){
+            $chat.prepend('<div><div class="msg msg-from">' + data.body + "</div></div><br/>");
+          } else {
+            $chat.prepend('<div><div class="chat-name">' + data.author + ': </div><div class="msg msg-to">' + data.body + "</div></div><br/>");
+          }
+        };
 
-      function displayOldMsg(data){
-        if (data.author==='<%=currentUser.username%>'){
-          $chat.append('<span class="msg msg-from"><b>' + data.author +': </b>'+ data.body + "</span><br/>");
-        } else {
-          $chat.append('<span class="msg msg-to"><b>' + data.author +': </b>'+ data.body + "</span><br/>");
-        }
-      };
+
+        $('.topnav a').click(function(){
+          $('#sideNavigation').width('250px');
+
+        });
+
+        $('.contacts-list-chat--title a').click(function(){
+          $('#sideNavigation').width('250px');
+        });
+
+        $('.closebtn').click(function(){
+          $('#sideNavigation').width('0px');
+        });
+
+
+
 });
-</script>
 
+</script>
 </html>
