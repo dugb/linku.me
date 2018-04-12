@@ -1,11 +1,24 @@
 <% include ./partials/header %>
 <body class = "mobile-shift">
-
+  <!-- contact list slide out menu-->
+  <div class="contacts-list-chat">
+    <div id="sideNavigation" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" >&times;</a>
+      <ul id="contact-list">
+        <% currentUser.friends.forEach(function(friends){ %>
+        <% if(friends){ %>
+        <li class = "contact">
+          <div id = "<%= friends.friend_name %>" class = "chat-contact-name chatBtn"><%= friends.friend_name %></div>
+        </li>
+        <% }}) %>
+      </ul>
+      <div class="mobile-nav-slice"></div>
+    </div>
+  </div>
   <header>
     <% include ./partials/navbar %>
     <% include ./partials/slide-out-nav %>
   </header>
-
   <div class = "alerts">
     <% if(error && error.length > 0){ %>
       <div class="alert--userhome alert--red" role="alert">
@@ -19,45 +32,22 @@
     <% } %>
   </div>
 
-
-<section class = "messenger">
-  <nav class="topnav">
-    <a href="#" >select a contact to chat with</a>
-  </nav>
-  <!-- contact list -->
-  <div class="contacts-list-chat">
-    <div id="sideNavigation" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" >&times;</a>
-      <ul id="contact-list">
-        <% currentUser.friends.forEach(function(friends){ %>
-        <% if(friends){ %>
-        <li class = "contact">
-          <!-- <span class = "contact-name"><%= friends.friend_name %></span> -->
-          <!-- <a class = "btn btn-sm btn-info" href="/user-profile/<%= friends.member_id %>">view</a> -->
-          <button id = "<%= friends.friend_name %>" class="btn btn-sm btn--info chatBtn" type="button" name="button"><%= friends.friend_name %></button>
-
-        </li>
-        <% }}) %>
-      </ul>
+  <section id="main" class = "messenger">
+    <nav class="contacts-list-chat--title">
+      <a href="#" >select a contact to chat with</a>
+    </nav>
+    <!-- chatBox -->
+    <div id="chatWrap" class="chatBoxWrap">
+      <div id = "chatTitle" class="chat--title">
+        Choose a contact to chat with
+      </div>
+      <div id="chat" class="chat"></div>
+      <form id="send-message" class="send-message-form">
+        <textarea class = "msgInput "id="message" size="35"> </textarea>
+        <input class = "btn msgSendBtn" type="submit"></input>
+      </form>
     </div>
-  </div>
-
-  <!-- chatBox -->
-  <div id="chatWrap" class="chatBoxWrap">
-    <div id = "chatTitle" class="chat--title">
-      Choose a contact to chat with
-    </div>
-    <div id="chat" class="chat"></div>
-    <form id="send-message" class="send-message-form">
-      <textarea class = "msgInput "id="message" size="35"> </textarea>
-      <input class = "btn msgSendBtn" type="submit"></input>
-    </form>
-  </div>
-
-</section>
-
-
-
+  </section>
 </body>
 <!-- <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -82,11 +72,10 @@
       $chat.html('');
       const data = { from: '<%=currentUser.username%>', to: clicked_button.attr("id")}
       socket.emit('get old msgs', data, function(){
-
       })
       $('#sideNavigation').width('0px');
+      $("#main").css("margin-left", "0");
     });
-
 
     socket.emit('new user', '<%=currentUser.username%>', function(data){
     if (data){
@@ -96,60 +85,56 @@
           }
     });
 
-        //submit message event-handler
-        $('#send-message').submit(function(e){
-          e.preventDefault();
-          if(($chatTitle.attr("id")!=='chatTitle')&&($messageBox.val().length > 0)){
-            const msgData = {
-              body: $messageBox.val(),
-              author: '<%=currentUser.username%>',
-              to: $chatTitle.attr("id")
-            }
-            socket.emit('send message', msgData, function(data){
-              $chat.append('<span class="error">' + data + "</span><br/>");
-            });
-            $messageBox.val('');
-          } else {
-            console.log("false");
-          }
+    //submit message event-handler
+    $('#send-message').submit(function(e){
+      e.preventDefault();
+      if(($chatTitle.attr("id")!=='chatTitle')&&($messageBox.val().length > 0)){
+        const msgData = {
+          body: $messageBox.val(),
+          author: '<%=currentUser.username%>',
+          to: $chatTitle.attr("id")
+        }
+        socket.emit('send message', msgData, function(data){
+          $chat.append('<span class="error">' + data + "</span><br/>");
         });
+        $messageBox.val('');
+      } else {
+        console.log("false");
+      }
+    });
 
-        socket.on('load old msgs', function(docs){
-          for( i=docs.length-1; i>=0; i--){
-            console.log("docs: ", docs[i]);
-            displayMsg(docs[i])
-          }
-        });
+    socket.on('load old msgs', function(docs){
+      for( i=docs.length-1; i>=0; i--){
+        console.log("docs: ", docs[i]);
+        displayMsg(docs[i])
+      }
+    });
 
-        socket.on('whisper', function(data){
-          if((data.author===$chatTitle.attr("id"))||(data.author==='<%=currentUser.username%>')){
-            console.log("data.body:", data.body);
-            console.log("data.author:", data.author);
-            displayMsg(data);
-          }
-        });
+    socket.on('whisper', function(data){
+      if((data.author===$chatTitle.attr("id"))||(data.author==='<%=currentUser.username%>')){
+        console.log("data.body:", data.body);
+        console.log("data.author:", data.author);
+        displayMsg(data);
+      }
+    });
 
-        function displayMsg(data){
-          if (data.author==='<%=currentUser.username%>'){
-            $chat.prepend('<div><div class="msg msg-from">' + data.body + "</div></div><br/>");
-          } else {
-            $chat.prepend('<div><div class="chat-name">' + data.author + ': </div><div class="msg msg-to">' + data.body + "</div></div><br/>");
-          }
-        };
+    function displayMsg(data){
+      if (data.author==='<%=currentUser.username%>'){
+        $chat.prepend('<div><div class="msg msg-from">' + data.body + "</div></div><br/>");
+      } else {
+        $chat.prepend('<div><div class="chat-name">' + data.author + ': </div><div class="msg msg-to">' + data.body + "</div></div><br/>");
+      }
+    };
 
+    $('.contacts-list-chat--title a').click(function(){
+      $('#sideNavigation').width('250px');
+      $("#main").css("margin-left", "250px");
+    });
 
-        $('.topnav a').click(function(){
-          $('#sideNavigation').width('250px');
-
-        });
-
-        $('.contacts-list-chat--title a').click(function(){
-          $('#sideNavigation').width('250px');
-        });
-
-        $('.closebtn').click(function(){
-          $('#sideNavigation').width('0px');
-        });
+    $('.closebtn').click(function(){
+      $('#sideNavigation').width('0px');
+      $("#main").css("margin-left", "0");
+    });
 
 
 

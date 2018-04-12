@@ -106,7 +106,7 @@ a{
   right: -180px;
   bottom: 0;
   width: 180px;
-background-color: rgba(0, 160, 192, 0.85);
+  background-color: rgba(0, 160, 192, 0.85);
   overflow: hidden;
   z-index: 11;
   transition: all .2s ease-in-out;
@@ -140,7 +140,8 @@ background-color: rgba(0, 160, 192, 0.85);
   text-decoration: none;
 }
 
-.slide-out-nav .mobile-nav-slice {
+
+ .mobile-nav-slice {
   position: absolute;
   right: 0;
   bottom: 0;
