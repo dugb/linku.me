@@ -702,6 +702,7 @@ a{
 }
 
 .mobile-nav-slice {
+   z-index: -1;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -860,9 +861,7 @@ a{
   font-size: .85rem;
 }
 
-@media (min-width: 530px) {
-
-}
+@media (min-width: 530px) {}
 
 @media (min-width: 800px) {
 
@@ -1343,10 +1342,11 @@ a{
 }
 
 .contacts-list-chat{
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .chat-contact-name{
+  /* z-index: 1; */
   font-size: 1.25rem;
   margin-left: 20px;
   margin-bottom: 5px;
@@ -1354,11 +1354,11 @@ a{
   letter-spacing: .8px;
   opacity: .9;
   color: white;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .chat-contact-name:hover{
-
+  opacity: 0.5;
 }
 
 .chatBoxWrap{
@@ -1520,7 +1520,7 @@ a{
 /* When you mouse over the navigation links, change their color */
 
 .sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
+  color: #f1f1f1;
 }
 
 /* Position and style the close button (top right corner) */
@@ -1575,58 +1575,10 @@ body {
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 
-@media screen and (max-height: 450px) {
+/* @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
-}
-
-a svg{
-  transition:all .5s ease;
-}
-
-a svg:hover{
-  #transform:rotate(180deg);
-}
-
-#ico{
-  display: none;
-}
-
-.menu{
-  background: #000;
-  display: none;
-  padding: 5px;
-  width: 320px;
-  @include border-radius(5px);
-
-  #transition: all 0.5s ease;
-}
-
-.menu a{
-  display: block;
-  color: #fff;
-  text-align: center;
-  padding: 10px 2px;
-  margin: 3px 0;
-  text-decoration: none;
-  background: #444;
-}
-
-.menu a:nth-child(1){
-  margin-top: 0;
-
-  @include border-radius(3px 3px 0 0 );
-}
-
-.menu a:nth-child(5){
-  margin-bottom: 0;
-
-  @include border-radius(0 0 3px 3px);
-}
-
-.menu a:hover{
-  background: #555;
-}
+} */
 
 #chat_section_wrapper{
 	position: fixed;

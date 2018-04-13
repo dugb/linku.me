@@ -8,7 +8,7 @@
         <% currentUser.friends.forEach(function(friends){ %>
         <% if(friends){ %>
         <li class = "contact">
-          <div id = "<%= friends.friend_name %>" class = "chat-contact-name chatBtn"><%= friends.friend_name %></div>
+          <div id = "<%= friends.friend_name %>" class = "chat-contact-name"><%= friends.friend_name %></div>
         </li>
         <% }}) %>
       </ul>
