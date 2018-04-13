@@ -1354,7 +1354,7 @@ a{
   letter-spacing: .8px;
   opacity: .9;
   color: white;
-  /* cursor: pointer; */
+  cursor: pointer;
 }
 
 .chat-contact-name:hover{
