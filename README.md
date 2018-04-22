@@ -1,10 +1,11 @@
 # linku.me
-a social network type of app.  social link and contact info sharing.
+a social network type of app.  Messenger/chat with social link and contact info sharing.
 
 Built using:
 node.js, express, ejs, passport, mongodb, gulp, postcss...
 
 Features implemented:
+Messenger
 users can create an account.
 users can store their social media links and contact info in their profile.
 users can edit their profile.
@@ -18,4 +19,3 @@ users will need to send and have accepted a contact request to view private info
 
 Features on todo list:
 users can upload their own profile pic.
-user2user messaging.
